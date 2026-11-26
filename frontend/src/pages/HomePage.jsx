@@ -6,7 +6,7 @@ import CollectionBanner from '../components/CollectionBanner';
 import BestSellers from '../components/BestSellers';
 import PromoBanner from '../components/PromoBanner';
 import LookbookSection from '../components/LookbookSection';
-import { Sparkles, Shield, RefreshCw, Feather } from 'lucide-react';
+import { Scissors, Shield, RefreshCw, Feather } from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -24,7 +24,7 @@ export default function HomePage() {
               <p className="text-[11px] text-stone-600">Pure Grade-6A Silk, French Flax & Cashmere</p>
             </div>
             <div className="flex flex-col items-center space-y-1">
-              <Sparkles className="w-5 h-5 text-elora-brown mb-1" />
+              <Scissors className="w-5 h-5 text-elora-brown mb-1" />
               <h4 className="text-xs uppercase tracking-wider font-semibold text-elora-dark">Atelier Craft</h4>
               <p className="text-[11px] text-stone-600">Hand-finished seams & bespoke tailoring</p>
             </div>
@@ -62,3 +62,4 @@ export default function HomePage() {
     </div>
   );
 }
+

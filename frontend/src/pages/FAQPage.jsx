@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle, Sparkles, Search } from 'lucide-react';
+import { ChevronDown, HelpCircle, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const FAQS = [
@@ -165,3 +165,4 @@ export default function FAQPage() {
     </div>
   );
 }
+

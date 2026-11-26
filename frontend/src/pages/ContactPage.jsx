@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, Sparkles } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 
 export default function ContactPage() {
@@ -38,7 +38,6 @@ export default function ContactPage() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-1.5 text-[10px] tracking-ultra uppercase text-elora-brown font-semibold mb-2">
-            <Sparkles className="w-3.5 h-3.5" />
             <span>Client Concierge</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-light text-elora-dark mb-4">
@@ -57,10 +56,10 @@ export default function ContactPage() {
             </h2>
 
             {submitted ? (
-              <div className="p-8 text-center bg-emerald-50 border border-emerald-200">
-                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
-                <h3 className="font-serif text-2xl font-light text-emerald-950 mb-2">Message Dispatched</h3>
-                <p className="text-xs text-emerald-800 font-light leading-relaxed mb-6">
+              <div className="p-8 text-center bg-elora-sand border border-elora-border">
+                <CheckCircle2 className="w-12 h-12 text-elora-brown mx-auto mb-3" />
+                <h3 className="font-serif text-2xl font-light text-elora-dark mb-2">Message Dispatched</h3>
+                <p className="text-xs text-elora-gray font-light leading-relaxed mb-6">
                   Thank you for contacting ÉLORA. A client concierge advisor will respond to your email within 4 business hours.
                 </p>
                 <button
@@ -151,7 +150,7 @@ export default function ContactPage() {
                   className="w-full py-4 bg-elora-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-elora-brown transition-colors flex items-center justify-center space-x-2 shadow-elora-soft"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Transmit Inquiry to Concierge</span>
+                  <span>Send Message</span>
                 </button>
               </form>
             )}
@@ -215,3 +214,4 @@ export default function ContactPage() {
     </div>
   );
 }
+

@@ -284,7 +284,7 @@ export default function CheckoutPage() {
                     />
                     <div>
                       <p className="text-xs font-semibold text-elora-dark flex items-center space-x-1.5">
-                        <Banknote className="w-4 h-4 text-emerald-600" />
+                        <Banknote className="w-4 h-4 text-elora-dark" />
                         <span>Cash on Delivery (COD)</span>
                       </p>
                       <p className="text-[11px] text-stone-500 mt-0.5">
@@ -310,7 +310,7 @@ export default function CheckoutPage() {
                     />
                     <div>
                       <p className="text-xs font-semibold text-elora-dark flex items-center space-x-1.5">
-                        <Building2 className="w-4 h-4 text-blue-600" />
+                        <Building2 className="w-4 h-4 text-elora-brown" />
                         <span>Direct Bank Transfer (Meezan / HBL / SCB)</span>
                       </p>
                       <p className="text-[11px] text-stone-500 mt-0.5">

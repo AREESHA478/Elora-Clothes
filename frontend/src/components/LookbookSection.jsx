@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { LOOKBOOK_ITEMS } from '../data/products';
 
 export default function LookbookSection() {
@@ -23,7 +23,6 @@ export default function LookbookSection() {
         {/* Editorial Section Heading */}
         <div className="text-center max-w-xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 text-[10px] tracking-ultra uppercase text-elora-brown font-semibold mb-2">
-            <Sparkles className="w-3 h-3 text-elora-brown" />
             <span>Volume IV — The Lookbook</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-5xl font-light text-elora-dark mb-4">
@@ -113,3 +112,4 @@ export default function LookbookSection() {
     </section>
   );
 }
+

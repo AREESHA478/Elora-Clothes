@@ -9,9 +9,7 @@ import {
   Truck, 
   ShieldCheck, 
   ChevronDown, 
-  ChevronRight, 
-  Sparkles, 
-  Share2, 
+  ChevronRight,Share2, 
   Check, 
   Clock, 
   PackageCheck 
@@ -239,7 +237,7 @@ export default function ProductDetailsPage() {
                     key={i}
                     className={`w-3.5 h-3.5 ${
                       i < Math.floor(product.rating)
-                        ? 'fill-amber-500 text-amber-500'
+                        ? 'fill-elora-brown text-elora-brown'
                         : 'fill-stone-200 text-stone-200'
                     }`}
                   />
@@ -260,7 +258,7 @@ export default function ProductDetailsPage() {
                 </span>
               )}
               {product.discountBadge && (
-                <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 border border-emerald-200">
+                <span className="text-xs font-semibold text-elora-dark bg-elora-sand px-2.5 py-1 border border-elora-border">
                   Save Rs. {(product.originalPrice - product.price).toLocaleString()}
                 </span>
               )}
@@ -392,8 +390,8 @@ export default function ProductDetailsPage() {
 
             {/* Availability & Delivery Status Badges */}
             <div className="bg-white border border-elora-taupe/30 p-4 space-y-3 text-xs text-stone-600 mb-8">
-              <div className="flex items-center space-x-2 text-emerald-800 font-medium">
-                <PackageCheck className="w-4 h-4 text-emerald-600" />
+              <div className="flex items-center space-x-2 text-elora-dark font-medium">
+                <PackageCheck className="w-4 h-4 text-elora-dark" />
                 <span>In Stock & Ready to Dispatch from Atelier Lahore</span>
               </div>
               <div className="flex items-center space-x-2">
@@ -490,7 +488,7 @@ export default function ProductDetailsPage() {
               <div>
                 <div className="flex items-center space-x-0.5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+                    <Star key={i} className="w-3.5 h-3.5 fill-elora-brown text-elora-brown" />
                   ))}
                 </div>
                 <span className="text-xs text-stone-500">100% of clients recommend this silhouette</span>
@@ -502,7 +500,7 @@ export default function ProductDetailsPage() {
             <div className="bg-white p-6 border border-elora-taupe/30">
               <div className="flex items-center space-x-1 mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 fill-amber-500 text-amber-500" />
+                  <Star key={i} className="w-3 h-3 fill-elora-brown text-elora-brown" />
                 ))}
               </div>
               <p className="font-serif text-base font-medium text-elora-dark mb-2">
@@ -512,13 +510,13 @@ export default function ProductDetailsPage() {
                 The drape on this piece is truly international grade. It feels like something acquired in a Milanese atelier. Very pleased with the packaging as well.
               </p>
               <p className="text-[11px] font-semibold text-elora-dark">Zainab R. • Lahore</p>
-              <p className="text-[10px] text-emerald-700">Verified Purchaser</p>
+              <p className="text-[10px] text-elora-brown">Verified Purchaser</p>
             </div>
 
             <div className="bg-white p-6 border border-elora-taupe/30">
               <div className="flex items-center space-x-1 mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 fill-amber-500 text-amber-500" />
+                  <Star key={i} className="w-3 h-3 fill-elora-brown text-elora-brown" />
                 ))}
               </div>
               <p className="font-serif text-base font-medium text-elora-dark mb-2">
@@ -528,13 +526,13 @@ export default function ProductDetailsPage() {
                 Purchased for an autumn gala in Islamabad. Received compliments all evening. The size guide was 100% accurate.
               </p>
               <p className="text-[11px] font-semibold text-elora-dark">Mahnoor K. • Islamabad</p>
-              <p className="text-[10px] text-emerald-700">Verified Purchaser</p>
+              <p className="text-[10px] text-elora-brown">Verified Purchaser</p>
             </div>
 
             <div className="bg-white p-6 border border-elora-taupe/30">
               <div className="flex items-center space-x-1 mb-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 fill-amber-500 text-amber-500" />
+                  <Star key={i} className="w-3 h-3 fill-elora-brown text-elora-brown" />
                 ))}
               </div>
               <p className="font-serif text-base font-medium text-elora-dark mb-2">
@@ -544,7 +542,7 @@ export default function ProductDetailsPage() {
                 You can tell immediate attention went into the stitching and lining. Fast 2-day delivery to Clifton. Highly recommend!
               </p>
               <p className="text-[11px] font-semibold text-elora-dark">Hassan T. • Karachi</p>
-              <p className="text-[10px] text-emerald-700">Verified Purchaser</p>
+              <p className="text-[10px] text-elora-brown">Verified Purchaser</p>
             </div>
           </div>
         </section>
@@ -571,3 +569,4 @@ export default function ProductDetailsPage() {
     </div>
   );
 }
+

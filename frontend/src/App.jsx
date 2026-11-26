@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ShopProvider } from './context/ShopContext';
 
 // Components
-import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import QuickViewModal from './components/QuickViewModal';
@@ -39,9 +38,6 @@ export default function App() {
       <BrowserRouter>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-elora-bg text-elora-dark font-sans selection:bg-elora-brown selection:text-white">
-          {/* Announcement Bar */}
-          <AnnouncementBar />
-
           {/* Sticky Luxury Navbar */}
           <Navbar />
 

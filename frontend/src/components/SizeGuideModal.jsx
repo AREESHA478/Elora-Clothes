@@ -11,37 +11,37 @@ export default function SizeGuideModal() {
   if (!isSizeGuideOpen) return null;
 
   const womenDataInches = [
-    { size: 'XS', uk: '6', bust: '31 - 32', waist: '24 - 25', hip: '34 - 35' },
-    { size: 'S', uk: '8 - 10', bust: '33 - 34', waist: '26 - 27', hip: '36 - 37' },
-    { size: 'M', uk: '12', bust: '35 - 36', waist: '28 - 29', hip: '38 - 39' },
-    { size: 'L', uk: '14', bust: '37 - 39', waist: '30 - 32', hip: '40 - 42' },
-    { size: 'XL', uk: '16', bust: '40 - 42', waist: '33 - 35', hip: '43 - 45' },
-    { size: 'XXL', uk: '18', bust: '43 - 45', waist: '36 - 38', hip: '46 - 48' },
+    { size: 'XS',  uk: '6',      bust: '31 - 32', waist: '24 - 25', hip: '34 - 35' },
+    { size: 'S',   uk: '8',      bust: '33 - 34', waist: '26 - 27', hip: '36 - 37' },
+    { size: 'M',   uk: '10-12',  bust: '35 - 36', waist: '28 - 29', hip: '38 - 39' },
+    { size: 'L',   uk: '14',     bust: '37 - 39', waist: '30 - 32', hip: '40 - 42' },
+    { size: 'XL',  uk: '16',     bust: '40 - 42', waist: '33 - 35', hip: '43 - 45' },
+    { size: 'XXL', uk: '18',     bust: '43 - 45', waist: '36 - 38', hip: '46 - 48' },
   ];
 
   const womenDataCm = [
-    { size: 'XS', uk: '6', bust: '79 - 82', waist: '61 - 64', hip: '86 - 89' },
-    { size: 'S', uk: '8 - 10', bust: '84 - 87', waist: '66 - 69', hip: '91 - 94' },
-    { size: 'M', uk: '12', bust: '89 - 92', waist: '71 - 74', hip: '96 - 99' },
-    { size: 'L', uk: '14', bust: '94 - 99', waist: '76 - 81', hip: '101 - 107' },
-    { size: 'XL', uk: '16', bust: '102 - 107', waist: '84 - 89', hip: '109 - 114' },
-    { size: 'XXL', uk: '18', bust: '109 - 114', waist: '91 - 97', hip: '117 - 122' },
+    { size: 'XS',  uk: '6',      bust: '79 - 82',   waist: '61 - 64',  hip: '86 - 89'   },
+    { size: 'S',   uk: '8',      bust: '84 - 87',   waist: '66 - 69',  hip: '91 - 94'   },
+    { size: 'M',   uk: '10-12',  bust: '89 - 92',   waist: '71 - 74',  hip: '96 - 99'   },
+    { size: 'L',   uk: '14',     bust: '94 - 99',   waist: '76 - 81',  hip: '101 - 107' },
+    { size: 'XL',  uk: '16',     bust: '102 - 107', waist: '84 - 89',  hip: '109 - 114' },
+    { size: 'XXL', uk: '18',     bust: '109 - 114', waist: '91 - 97',  hip: '117 - 122' },
   ];
 
   const menDataInches = [
-    { size: 'S', chest: '36 - 38', waist: '30 - 31', neck: '14.5 - 15', sleeve: '32.5' },
-    { size: 'M', chest: '39 - 41', waist: '32 - 33', neck: '15.5 - 16', sleeve: '33.5' },
-    { size: 'L', chest: '42 - 44', waist: '34 - 36', neck: '16.5 - 17', sleeve: '34.5' },
-    { size: 'XL', chest: '45 - 47', waist: '37 - 39', neck: '17.5 - 18', sleeve: '35.5' },
-    { size: 'XXL', chest: '48 - 50', waist: '40 - 42', neck: '18.5 - 19', sleeve: '36.5' },
+    { size: 'S',   chest: '36 - 38', waist: '30 - 31', neck: '14.5 - 15',  sleeve: '32' },
+    { size: 'M',   chest: '39 - 41', waist: '32 - 33', neck: '15.5 - 16',  sleeve: '33' },
+    { size: 'L',   chest: '42 - 44', waist: '34 - 36', neck: '16.5 - 17',  sleeve: '34' },
+    { size: 'XL',  chest: '45 - 47', waist: '37 - 39', neck: '17.5 - 18',  sleeve: '35' },
+    { size: 'XXL', chest: '48 - 50', waist: '40 - 42', neck: '18.5 - 19',  sleeve: '36' },
   ];
 
   const menDataCm = [
-    { size: 'S', chest: '91 - 96', waist: '76 - 79', neck: '37 - 38', sleeve: '82.5' },
-    { size: 'M', chest: '99 - 104', waist: '81 - 84', neck: '39 - 40', sleeve: '85' },
-    { size: 'L', chest: '107 - 112', waist: '86 - 91', neck: '42 - 43', sleeve: '87.5' },
-    { size: 'XL', chest: '114 - 119', waist: '94 - 99', neck: '44 - 45', sleeve: '90' },
-    { size: 'XXL', chest: '122 - 127', waist: '101 - 107', neck: '47 - 48', sleeve: '92.5' },
+    { size: 'S',   chest: '91 - 96',   waist: '76 - 79',   neck: '37 - 38', sleeve: '81' },
+    { size: 'M',   chest: '99 - 104',  waist: '81 - 84',   neck: '39 - 41', sleeve: '84' },
+    { size: 'L',   chest: '107 - 112', waist: '86 - 91',   neck: '42 - 43', sleeve: '86' },
+    { size: 'XL',  chest: '114 - 119', waist: '94 - 99',   neck: '44 - 46', sleeve: '89' },
+    { size: 'XXL', chest: '122 - 127', waist: '101 - 107', neck: '47 - 48', sleeve: '91' },
   ];
 
   const currentWomenData = unit === 'inches' ? womenDataInches : womenDataCm;
@@ -71,10 +71,10 @@ export default function SizeGuideModal() {
             <Ruler className="w-5 h-5 text-elora-brown" />
             <div>
               <h2 className="font-serif text-2xl sm:text-3xl font-light text-elora-dark">
-                Atelier Sizing Guide
+                Size Guide
               </h2>
               <p className="text-[10px] uppercase tracking-widest text-elora-gray">
-                Precision measurements for flawless silhouette drape
+                Find your perfect fit
               </p>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function SizeGuideModal() {
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >
-              Women's Sizing
+              Women
             </button>
             <button
               onClick={() => setActiveTab('men')}
@@ -109,7 +109,7 @@ export default function SizeGuideModal() {
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >
-              Men's Sizing
+              Men
             </button>
           </div>
 
@@ -143,18 +143,16 @@ export default function SizeGuideModal() {
             <table className="w-full text-left text-xs">
               <thead className="bg-elora-sand text-elora-dark uppercase tracking-wider font-semibold">
                 <tr>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">ÉLORA Size</th>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">UK / Int</th>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">Bust ({unit === 'inches' ? 'in' : 'cm'})</th>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">Waist ({unit === 'inches' ? 'in' : 'cm'})</th>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">Hips ({unit === 'inches' ? 'in' : 'cm'})</th>
+                  <th className="py-3 px-4 border-b border-elora-taupe/30">Size</th>
+                  <th className="py-3 px-4 border-b border-elora-taupe/30">Chest</th>
+                  <th className="py-3 px-4 border-b border-elora-taupe/30">Waist</th>
+                  <th className="py-3 px-4 border-b border-elora-taupe/30">Hips</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100">
                 {currentWomenData.map((row) => (
                   <tr key={row.size} className="hover:bg-stone-50">
                     <td className="py-3 px-4 font-bold text-elora-dark">{row.size}</td>
-                    <td className="py-3 px-4 text-stone-600">{row.uk}</td>
                     <td className="py-3 px-4 text-stone-700">{row.bust}</td>
                     <td className="py-3 px-4 text-stone-700">{row.waist}</td>
                     <td className="py-3 px-4 text-stone-700">{row.hip}</td>
@@ -166,11 +164,11 @@ export default function SizeGuideModal() {
             <table className="w-full text-left text-xs">
               <thead className="bg-elora-sand text-elora-dark uppercase tracking-wider font-semibold">
                 <tr>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">ÉLORA Size</th>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">Chest ({unit === 'inches' ? 'in' : 'cm'})</th>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">Waist ({unit === 'inches' ? 'in' : 'cm'})</th>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">Neck Collar</th>
-                  <th className="py-3 px-4 border-b border-elora-taupe/30">Sleeve Length</th>
+                  <th className="py-3 px-4 border-b border-elora-taupe/30">Size</th>
+                  <th className="py-3 px-4 border-b border-elora-taupe/30">Chest</th>
+                  <th className="py-3 px-4 border-b border-elora-taupe/30">Waist</th>
+                  <th className="py-3 px-4 border-b border-elora-taupe/30">Neck</th>
+                  <th className="py-3 px-4 border-b border-elora-taupe/30">Sleeve</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100">
@@ -191,35 +189,35 @@ export default function SizeGuideModal() {
         {/* How to Measure Instructions */}
         <div className="bg-elora-sand/60 p-5 border border-elora-taupe/30">
           <h3 className="font-serif text-lg font-medium text-elora-dark mb-3">
-            How to Take Your Measurements
+            How to Measure
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-stone-600 leading-relaxed">
             <div>
               <p className="font-semibold text-elora-dark mb-1">1. Bust / Chest</p>
-              <p>Wrap the measuring tape around the fullest part of your chest, keeping the tape parallel to the floor.</p>
+              <p>Measure around the fullest part of your chest, keeping the tape straight.</p>
             </div>
             <div>
-              <p className="font-semibold text-elora-dark mb-1">2. Natural Waist</p>
-              <p>Measure around the narrowest circumference of your torso, typically 1 to 2 inches above the belly button.</p>
+              <p className="font-semibold text-elora-dark mb-1">2. Waist</p>
+              <p>Measure around the narrowest part of your waist, usually above the belly button.</p>
             </div>
             <div>
               <p className="font-semibold text-elora-dark mb-1">3. Hips</p>
-              <p>Stand with feet together and measure around the fullest curve of your hips and seat.</p>
+              <p>Stand with feet together and measure around the fullest part of your hips.</p>
             </div>
             <div>
-              <p className="font-semibold text-elora-dark mb-1">4. Fit Recommendation</p>
-              <p>If your measurements fall between two sizes, we advise sizing up for relaxed drape, or sizing down for structured tailoring.</p>
+              <p className="font-semibold text-elora-dark mb-1">4. Not sure about your size?</p>
+              <p>If you're between two sizes, go a size up for a relaxed fit or size down for a fitted look.</p>
             </div>
           </div>
         </div>
 
-        {/* Footer Confirmation */}
+        {/* Footer */}
         <div className="mt-6 flex justify-end">
           <button
             onClick={closeSizeGuide}
-            className="px-6 py-2.5 bg-elora-dark text-white text-xs uppercase tracking-wider font-semibold hover:bg-elora-brown transition-colors"
+            className="px-6 py-2.5 bg-elora-brown text-white text-xs uppercase tracking-wider font-semibold hover:bg-elora-accent transition-colors rounded-full"
           >
-            Got It
+            Close
           </button>
         </div>
       </motion.div>

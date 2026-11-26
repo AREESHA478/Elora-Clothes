@@ -20,7 +20,7 @@ export default function ToastContainer() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.9 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className={`pointer-events-auto flex items-center justify-between p-4 rounded-none shadow-2xl border backdrop-blur-md ${
+              className={`pointer-events-auto flex items-center justify-between p-4 rounded-none shadow-elora-float border backdrop-blur-md ${
                 isError
                   ? 'bg-red-950/90 text-white border-red-700/60'
                   : isInfo
@@ -34,7 +34,7 @@ export default function ToastContainer() {
                 ) : isInfo ? (
                   <Info className="w-5 h-5 text-elora-taupe shrink-0" />
                 ) : (
-                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-elora-taupe shrink-0" />
                 )}
                 <span className="text-xs uppercase tracking-wider font-medium leading-relaxed">
                   {toast.message}

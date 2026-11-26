@@ -94,7 +94,7 @@ export default function CartDrawer() {
               <Truck className="w-4 h-4 text-elora-brown" />
               <span>
                 {isFreeShipping ? (
-                  <strong className="text-emerald-700">You qualify for Free Express Shipping!</strong>
+                  <strong className="text-elora-dark">You qualify for Free Express Shipping!</strong>
                 ) : (
                   <>Add <strong className="text-elora-dark">Rs. {freeShippingDifference.toLocaleString()}</strong> more for Free Shipping</>
                 )}
@@ -105,7 +105,7 @@ export default function CartDrawer() {
           <div className="w-full bg-stone-200 h-1.5 overflow-hidden">
             <div
               className={`h-full transition-all duration-500 ${
-                isFreeShipping ? 'bg-emerald-600' : 'bg-elora-brown'
+                isFreeShipping ? 'bg-elora-dark' : 'bg-elora-brown'
               }`}
               style={{ width: `${progressPercent}%` }}
             />

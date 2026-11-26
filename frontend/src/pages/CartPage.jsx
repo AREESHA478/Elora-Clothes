@@ -89,7 +89,7 @@ export default function CartPage() {
             <Truck className="w-5 h-5 text-elora-brown" />
             <span className="text-xs text-stone-700">
               {isFreeShipping ? (
-                <strong className="text-emerald-700">Congratulations! You've unlocked Complimentary Express Courier Shipping.</strong>
+                <strong className="text-elora-dark">Congratulations! You've unlocked Complimentary Express Courier Shipping.</strong>
               ) : (
                 <>Add <strong className="text-elora-dark">Rs. {freeShippingDifference.toLocaleString()}</strong> more to your order to enjoy Free Express Shipping nationwide.</>
               )}
@@ -229,7 +229,7 @@ export default function CartPage() {
               </div>
 
               {discountAmount > 0 && (
-                <div className="flex justify-between text-emerald-700 font-medium">
+                <div className="flex justify-between text-elora-dark font-medium">
                   <span>Member Discount ({appliedPromo?.percent}%)</span>
                   <span>- Rs. {discountAmount.toLocaleString()}</span>
                 </div>
@@ -277,7 +277,7 @@ export default function CartPage() {
               </form>
 
               {appliedPromo && (
-                <div className="mt-2 flex items-center justify-between text-xs bg-emerald-50 text-emerald-800 p-2 border border-emerald-200">
+                <div className="mt-2 flex items-center justify-between text-xs bg-elora-sand text-elora-dark p-2 border border-elora-border">
                   <span>{appliedPromo.name}</span>
                   <button onClick={removePromoCode} className="underline text-[10px] text-stone-500 hover:text-black">
                     Remove
@@ -311,7 +311,7 @@ export default function CartPage() {
 
             {/* Security Guarantee */}
             <div className="pt-2 flex items-center justify-center space-x-2 text-[11px] text-stone-500">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <ShieldCheck className="w-4 h-4 text-elora-brown" />
               <span>Encrypted Checkout • 100% Client Privacy</span>
             </div>
           </div>

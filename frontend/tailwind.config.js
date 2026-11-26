@@ -8,19 +8,19 @@ export default {
     extend: {
       colors: {
         elora: {
-          bg: "#FAF7F2",
-          dark: "#1D1D1D",
-          taupe: "#D8C9B8",
-          brown: "#8B6B4E",
-          gray: "#777777",
-          sand: "#F2ECE3",
-          stone: "#E4DCD3",
-          cream: "#FCF9F5",
-          accent: "#A17C58",
-          border: "#E7DFD5",
-          charcoal: "#2C2A29",
-          muted: "#9E9E9E",
-          gold: "#C4A67B"
+          bg: "#F7F1E9",        // Main background — warm cream
+          dark: "#4A3428",      // Main text, primary buttons, footer background
+          taupe: "#B89B7D",     // Accent
+          brown: "#8B6B50",     // Secondary buttons & warm accent
+          gray: "#7A6355",      // Muted warm brown subtext
+          sand: "#E8D8C5",      // Secondary background
+          stone: "#E8D8C5",     // Secondary surface / hover states
+          cream: "#FFFFFF",     // Pure white — cards & surfaces
+          accent: "#6D513C",    // Deep warm brown hover
+          border: "#D8C8B7",    // Borders
+          charcoal: "#4A3428",  // Footer & dark sections
+          muted: "#B89B7D",     // Muted accent
+          gold: "#B89B7D"       // Warm accent
         }
       },
       fontFamily: {
@@ -33,9 +33,9 @@ export default {
         ultra: '.28em'
       },
       boxShadow: {
-        'elora-soft': '0 8px 30px rgba(29, 29, 29, 0.05)',
-        'elora-card': '0 10px 40px -10px rgba(29, 29, 29, 0.08)',
-        'elora-float': '0 20px 50px -15px rgba(29, 29, 29, 0.12)',
+        'elora-soft': '0 8px 30px rgba(74, 52, 40, 0.06)',
+        'elora-card': '0 10px 40px -10px rgba(74, 52, 40, 0.10)',
+        'elora-float': '0 20px 50px -15px rgba(74, 52, 40, 0.16)',
       }
     },
   },

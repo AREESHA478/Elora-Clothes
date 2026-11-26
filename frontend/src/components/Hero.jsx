@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Hero() {
@@ -33,17 +33,6 @@ export default function Hero() {
       {/* Hero Editorial Content */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
         <div className="max-w-2xl">
-          {/* Season Pill */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center space-x-2 px-3 py-1.5 bg-elora-dark/80 backdrop-blur-md text-elora-taupe border border-elora-taupe/30 text-[10px] tracking-ultra uppercase font-medium mb-6"
-          >
-            <Sparkles className="w-3 h-3 text-elora-taupe" />
-            <span>Autumn / Winter 2026 Collection</span>
-          </motion.div>
-
           {/* Editorial Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -82,7 +71,7 @@ export default function Hero() {
 
             <Link
               to="/shop?gender=men"
-              className="inline-flex items-center justify-center space-x-2 px-8 py-4 bg-white/90 backdrop-blur-md text-elora-dark border border-elora-dark/20 text-xs uppercase tracking-widest font-semibold hover:bg-elora-dark hover:text-white transition-all duration-300 group"
+              className="inline-flex items-center justify-center space-x-2 px-8 py-4 bg-white/90 backdrop-blur-md text-elora-dark border border-elora-dark/20 text-xs uppercase tracking-widest font-semibold hover:bg-elora-brown hover:text-white hover:border-elora-brown transition-all duration-300 group"
             >
               <span>Shop Men</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -114,3 +103,4 @@ export default function Hero() {
     </section>
   );
 }
+

@@ -7,9 +7,7 @@ import {
   ChevronDown, 
   SlidersHorizontal, 
   RotateCcw, 
-  Search,
-  Sparkles 
-} from 'lucide-react';
+  Search,} from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 import ProductCard from '../components/ProductCard';
 
@@ -471,7 +469,6 @@ export default function ShopPage() {
           <main className="lg:col-span-3">
             {filteredProducts.length === 0 ? (
               <div className="bg-white border border-elora-taupe/30 p-12 text-center">
-                <Sparkles className="w-8 h-8 text-elora-brown mx-auto mb-3" />
                 <h3 className="font-serif text-2xl font-light text-elora-dark mb-2">
                   No matching silhouettes found
                 </h3>
@@ -612,3 +609,4 @@ export default function ShopPage() {
     </div>
   );
 }
+

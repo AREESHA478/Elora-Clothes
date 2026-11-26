@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Feather, Compass, Sparkles, HeartHandshake } from 'lucide-react';
+import { ArrowRight, Feather, Compass, HeartHandshake } from 'lucide-react';
 
 export default function AboutPage() {
   return (
@@ -21,7 +21,6 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center space-x-2 text-[10px] tracking-ultra uppercase text-elora-taupe font-semibold mb-4"
           >
-            <Sparkles className="w-3.5 h-3.5" />
             <span>The Maison Manifesto</span>
           </motion.div>
           <motion.h1
@@ -140,3 +139,4 @@ export default function AboutPage() {
     </div>
   );
 }
+

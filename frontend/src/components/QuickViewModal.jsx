@@ -10,8 +10,7 @@ import {
   Truck, 
   ShieldCheck, 
   Check, 
-  ChevronRight,
-  Sparkles
+  ChevronRight
 } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 
@@ -170,7 +169,7 @@ export default function QuickViewModal() {
                       key={i}
                       className={`w-3.5 h-3.5 ${
                         i < Math.floor(product.rating)
-                          ? 'fill-amber-500 text-amber-500'
+                          ? 'fill-elora-brown text-elora-brown'
                           : 'fill-stone-200 text-stone-200'
                       }`}
                     />
@@ -191,7 +190,7 @@ export default function QuickViewModal() {
                   </span>
                 )}
                 {product.discountBadge && (
-                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+                  <span className="text-xs font-semibold text-elora-dark bg-elora-sand px-2 py-0.5 border border-elora-border">
                     Save Rs. {(product.originalPrice - product.price).toLocaleString()}
                   </span>
                 )}
@@ -293,7 +292,7 @@ export default function QuickViewModal() {
                         <thead>
                           <tr className="border-b border-elora-taupe/40 text-stone-700">
                             <th className="py-1">Size</th>
-                            <th className="py-1">Bust/Chest</th>
+                            <th className="py-1">Chest</th>
                             <th className="py-1">Waist</th>
                             <th className="py-1">Hips</th>
                           </tr>
@@ -382,3 +381,4 @@ export default function QuickViewModal() {
     </div>
   );
 }
+

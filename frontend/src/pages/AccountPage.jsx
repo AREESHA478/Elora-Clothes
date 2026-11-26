@@ -8,9 +8,7 @@ import {
   Package, 
   MapPin, 
   Heart, 
-  LogOut, 
-  Sparkles, 
-  CheckCircle2, 
+  LogOut,CheckCircle2, 
   Clock, 
   ShieldCheck, 
   ArrowRight 
@@ -172,7 +170,7 @@ export default function AccountPage() {
                         <p className="text-[11px] text-stone-500 mt-0.5">Placed on {ord.date}</p>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <span className="px-3 py-1 bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-200">
+                        <span className="px-3 py-1 bg-elora-sand text-elora-dark text-xs font-semibold border border-elora-border">
                           {ord.status || 'Confirmed'}
                         </span>
                         <span className="font-semibold text-elora-dark text-sm">
@@ -270,7 +268,7 @@ export default function AccountPage() {
                     Phone: {addr.phone}
                   </p>
                   <div className="pt-3 border-t border-elora-taupe/30 text-xs">
-                    <span className="text-emerald-700 font-medium">Verified for Express Delivery</span>
+                    <span className="text-elora-dark font-medium">Verified for Express Delivery</span>
                   </div>
                 </div>
               ))}
@@ -470,8 +468,8 @@ export default function AccountPage() {
             </p>
 
             {forgotSent ? (
-              <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 mb-2" />
+              <div className="p-4 bg-elora-sand border border-elora-border text-elora-dark text-xs">
+                <CheckCircle2 className="w-5 h-5 text-elora-brown mb-2" />
                 <span>Instructions have been transmitted. Please inspect your email inbox.</span>
                 <button
                   onClick={() => setAuthMode('login')}
@@ -520,3 +518,4 @@ export default function AccountPage() {
     </div>
   );
 }
+

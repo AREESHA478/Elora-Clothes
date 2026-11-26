@@ -293,7 +293,7 @@ export default function Navbar() {
               >
                 <User className="w-5 h-5" />
                 {user && (
-                  <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-elora-brown" />
                 )}
               </Link>
 

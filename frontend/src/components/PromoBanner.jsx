@@ -20,7 +20,7 @@ export default function PromoBanner() {
           <div className="relative z-10 max-w-xl">
             <div className="inline-flex items-center space-x-2 px-3 py-1 bg-elora-dark text-white text-[10px] tracking-ultra uppercase font-bold mb-4">
               <Tag className="w-3 h-3 text-elora-taupe" />
-              <span>Private Archive Clearance</span>
+              <span>Big Sale</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-light text-elora-dark leading-none mb-4">

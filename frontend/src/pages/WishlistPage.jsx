@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Heart, Trash2, ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
+import { Heart, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 import ProductCard from '../components/ProductCard';
 
@@ -25,7 +25,6 @@ export default function WishlistPage() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-6 border-b border-elora-taupe/30">
           <div>
             <div className="inline-flex items-center space-x-1.5 text-[10px] tracking-ultra uppercase text-elora-brown font-semibold mb-1">
-              <Sparkles className="w-3.5 h-3.5" />
               <span>Personal Collection</span>
             </div>
             <h1 className="font-serif text-3xl sm:text-5xl font-light text-elora-dark">
@@ -67,3 +66,4 @@ export default function WishlistPage() {
     </div>
   );
 }
+
