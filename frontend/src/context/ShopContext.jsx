@@ -211,7 +211,7 @@ export const ShopProvider = ({ children }) => {
   const applyPromoCode = (code) => {
     const cleanCode = (code || '').trim().toUpperCase();
     if (cleanCode === 'ELORA15') {
-      setAppliedPromo({ code: cleanCode, percent: 15, name: 'Privé 15% Welcome Discount' });
+      setAppliedPromo({ code: cleanCode, percent: 15, name: '15% Welcome Discount' });
       addToast('Promo code ELORA15 applied! (15% Off)', 'success');
       return true;
     } else if (cleanCode === 'AUTUMN20') {
@@ -295,7 +295,7 @@ export const ShopProvider = ({ children }) => {
       email: email,
       phone: "+92 300 1234567",
       memberSince: "November 2026",
-      tier: "ÉLORA Privé VIP",
+      tier: "ÉLORA VIP Member",
       addresses: [
         {
           id: 1,
@@ -325,7 +325,7 @@ export const ShopProvider = ({ children }) => {
       email: userData.email,
       phone: userData.phone || "+92 300 0000000",
       memberSince: "November 2026",
-      tier: "ÉLORA Privé Member",
+      tier: "ÉLORA Member",
       addresses: [
         {
           id: 1,
@@ -340,7 +340,7 @@ export const ShopProvider = ({ children }) => {
       ]
     };
     setUser(newUser);
-    addToast('Account created successfully! Welcome to ÉLORA Privé.', 'success');
+    addToast('Account created successfully! Welcome to ÉLORA.', 'success');
     return true;
   };
 

@@ -230,7 +230,7 @@ export default function CartPage() {
 
               {discountAmount > 0 && (
                 <div className="flex justify-between text-emerald-700 font-medium">
-                  <span>Privé Privilege ({appliedPromo?.percent}%)</span>
+                  <span>Member Discount ({appliedPromo?.percent}%)</span>
                   <span>- Rs. {discountAmount.toLocaleString()}</span>
                 </div>
               )}

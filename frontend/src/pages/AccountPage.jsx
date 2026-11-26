@@ -291,7 +291,7 @@ export default function AccountPage() {
             ÉLORA
           </span>
           <span className="block text-[8px] tracking-[0.35em] text-elora-brown uppercase mt-0.5 font-sans">
-            PRIVÉ CLIENT PORTAL
+            CLIENT PORTAL
           </span>
         </div>
 
@@ -369,7 +369,7 @@ export default function AccountPage() {
               type="submit"
               className="w-full py-3.5 bg-elora-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-elora-brown transition-colors shadow-sm mt-2"
             >
-              Sign In to Privé
+              Sign In to Your Account
             </button>
 
             <div className="pt-4 text-center">
@@ -454,7 +454,7 @@ export default function AccountPage() {
               type="submit"
               className="w-full py-3.5 bg-elora-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-elora-brown transition-colors shadow-sm mt-2"
             >
-              Enroll in ÉLORA Privé
+              Create Your Account
             </button>
           </form>
         )}

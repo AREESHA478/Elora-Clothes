@@ -10,11 +10,6 @@ const ANNOUNCEMENTS = [
     link: "/shop"
   },
   {
-    text: "THE AUTUMN EDIT — TIMELESS TAILORING & SILK SILHOUETTES",
-    linkText: "DISCOVER",
-    link: "/shop?collection=Autumn Edit"
-  },
-  {
     text: "LIMITED TIME PRIVATE ARCHIVE: UP TO 40% OFF SELECTED PIECES",
     linkText: "EXPLORE SALE",
     link: "/shop?filter=sale"

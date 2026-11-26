@@ -20,7 +20,7 @@ export default function Footer() {
     e.preventDefault();
     if (newsletterEmail && newsletterEmail.includes('@')) {
       setSubscribed(true);
-      addToast('Thank you for subscribing to ÉLORA Privé Gazette.', 'success');
+      addToast('Thank you for subscribing to ÉLORA Newsletter.', 'success');
       setNewsletterEmail('');
     }
   };
@@ -142,7 +142,7 @@ export default function Footer() {
               <li><Link to="/about" className="hover:text-white transition-colors">Our Atelier Story</Link></li>
               <li><Link to="/about#craft" className="hover:text-white transition-colors">Fabric Integrity & Sourcing</Link></li>
               <li><Link to="/contact#locations" className="hover:text-white transition-colors">Boutique Locations</Link></li>
-              <li><Link to="/account" className="hover:text-white transition-colors">ÉLORA Privé Membership</Link></li>
+              <li><Link to="/account" className="hover:text-white transition-colors">ÉLORA Membership</Link></li>
             </ul>
 
             <div className="mt-6">
