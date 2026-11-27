@@ -44,7 +44,7 @@ export default function Footer() {
   const { openSizeGuide } = useShop();
 
   return (
-    <footer className="bg-white text-[#171717] border-t border-[#e5e5e5] font-sans mt-8">
+    <footer className="relative z-10 bg-white text-[#171717] border-t border-[#e5e5e5] font-sans mt-8">
       <div className="max-w-[1220px] mx-auto px-4 sm:px-8 py-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Menu Columns */}
