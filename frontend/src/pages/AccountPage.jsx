@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 import { useShop } from '../context/ShopContext';
 
 export default function AccountPage() {
-  const { user, login, logout, register, orders, wishlist, addToast } = useShop();
+  const { user, login, logout, register, orders, addToast } = useShop();
 
   // Mode: 'login' | 'register' | 'forgot'
   const [authMode, setAuthMode] = useState('login');
@@ -138,12 +138,6 @@ export default function AccountPage() {
             >
               Saved Addresses
             </button>
-            <Link
-              to="/wishlist"
-              className="pb-3 border-b-2 border-transparent text-stone-400 hover:text-elora-brown whitespace-nowrap"
-            >
-              Wishlist ({wishlist.length})
-            </Link>
           </div>
 
           {/* TAB 1: Order History */}

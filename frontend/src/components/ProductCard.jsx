@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Heart, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 
 export default function ProductCard({ product }) {
-  const { addToCart, toggleWishlist, isInWishlist, openQuickView } = useShop();
+  const { addToCart, openQuickView } = useShop();
   const [isHovered, setIsHovered] = useState(false);
 
-  const isFavorite = isInWishlist(product.id);
   const primaryImage = product.images[0];
   const secondaryImage = product.images[1] || product.images[0];
 
@@ -16,13 +15,13 @@ export default function ProductCard({ product }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Compact Image Container (Fullstop .fhg__photo 2:3) */}
+      {/* Compact Image Container — Click opens Full-Screen Image Viewer */}
       <div className="relative aspect-[2/3] rounded-[10px] overflow-hidden bg-[#f5f5f5]">
         <button
           type="button"
           onClick={() => openQuickView(product)}
           className="block w-full h-full text-left cursor-pointer"
-          aria-label={`View ${product.name}`}
+          aria-label={`View ${product.name} full-screen`}
         >
           <img
             src={isHovered ? secondaryImage : primaryImage}
@@ -46,26 +45,9 @@ export default function ProductCard({ product }) {
             )}
           </div>
         )}
-
-        {/* Wishlist Icon */}
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleWishlist(product);
-          }}
-          aria-label="Toggle wishlist"
-          className={`absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center border transition-colors ${
-            isFavorite
-              ? 'bg-[#171717] text-white border-[#171717]'
-              : 'bg-white/95 text-[#171717] border-[#e5e5e5] opacity-0 group-hover:opacity-100'
-          }`}
-        >
-          <Heart className={`w-3 h-3 ${isFavorite ? 'fill-current' : ''}`} />
-        </button>
       </div>
 
-      {/* Compact Product Info (Fullstop .fhg__tile) */}
+      {/* Compact Product Info */}
       <div className="mt-2 flex-1 flex flex-col justify-between gap-1 text-center">
         <button
           type="button"
@@ -88,7 +70,7 @@ export default function ProductCard({ product }) {
           )}
         </div>
 
-        {/* Centered Compact + Button (Fullstop .fhg__plus) */}
+        {/* Centered Compact + Button */}
         <div className="pt-1 flex justify-center">
           <button
             type="button"

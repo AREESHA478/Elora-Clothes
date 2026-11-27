@@ -14,16 +14,6 @@ export const ShopProvider = ({ children }) => {
     }
   });
 
-  // ================= WISHLIST STATE =================
-  const [wishlist, setWishlist] = useState(() => {
-    try {
-      const saved = localStorage.getItem('elora_wishlist');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
-
   // ================= RECENTLY VIEWED =================
   const [recentlyViewed, setRecentlyViewed] = useState(() => {
     try {
@@ -93,14 +83,6 @@ export const ShopProvider = ({ children }) => {
       console.error(e);
     }
   }, [cart]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('elora_wishlist', JSON.stringify(wishlist));
-    } catch (e) {
-      console.error(e);
-    }
-  }, [wishlist]);
 
   useEffect(() => {
     try {
@@ -241,22 +223,6 @@ export const ShopProvider = ({ children }) => {
   const effectiveShipping = appliedPromo?.freeShipping ? 0 : shippingFee;
   const cartTotal = Math.max(0, cartSubtotal - discountAmount + effectiveShipping);
 
-  // ================= WISHLIST ACTIONS =================
-  const toggleWishlist = (product) => {
-    const exists = wishlist.some((id) => id === product.id);
-    if (exists) {
-      setWishlist((prev) => prev.filter((id) => id !== product.id));
-      addToast(`Removed "${product.name}" from your wishlist`, 'info');
-    } else {
-      setWishlist((prev) => [...prev, product.id]);
-      addToast(`Saved "${product.name}" to your wishlist`, 'success');
-    }
-  };
-
-  const isInWishlist = (productId) => {
-    return wishlist.includes(productId);
-  };
-
   // ================= RECENTLY VIEWED =================
   const addRecentlyViewed = (product) => {
     if (!product?.id) return;
@@ -365,9 +331,6 @@ export const ShopProvider = ({ children }) => {
         applyPromoCode,
         removePromoCode,
         discountAmount,
-        wishlist,
-        toggleWishlist,
-        isInWishlist,
         recentlyViewed,
         addRecentlyViewed,
         orders,

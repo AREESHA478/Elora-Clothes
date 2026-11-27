@@ -4,14 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
   User, 
-  Heart, 
   ShoppingBag, 
   Menu, 
   X, 
   ChevronDown, 
-  ChevronRight,
-  ArrowRight,
-  SlidersHorizontal
+  ArrowRight
 } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 import { CATEGORIES_NAV } from '../data/products';
@@ -19,8 +16,8 @@ import { CATEGORIES_NAV } from '../data/products';
 export default function Navbar() {
   const { 
     cartItemCount, 
-    wishlist, 
     openCartDrawer, 
+    openQuickView,
     user,
     PRODUCTS
   } = useShop();
@@ -88,15 +85,17 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-[1220px] mx-auto px-4 sm:px-8">
+          {/* Top Row: Menu Trigger (Left) | Brand Logo (Center) | Search, Account, Bag (Right) */}
           <div className="grid grid-cols-3 items-center">
-            {/* Left: Mobile Menu Button (keeps center logo balanced on desktop) */}
+            {/* Left: Menu Trigger (Desktop & Mobile) */}
             <div className="flex items-center">
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="p-2 -ml-2 text-[#171717] hover:opacity-70 transition-opacity lg:hidden"
-                aria-label="Open mobile navigation menu"
+                className="inline-flex items-center gap-2 py-1.5 pr-3 -ml-1 text-[#171717] hover:opacity-70 transition-opacity"
+                aria-label="Open navigation menu"
               >
-                <Menu className="w-6 h-6" />
+                <Menu className="w-5 h-5" />
+                <span className="hidden sm:inline text-xs font-semibold tracking-tight">Menu</span>
               </button>
             </div>
 
@@ -109,9 +108,8 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Right Action Icons */}
-            <div className="flex items-center justify-end space-x-2.5 sm:space-x-4">
-              {/* Search Icon */}
+            {/* Right Action Icons (Search, Account, Bag — balanced spacing without Wishlist) */}
+            <div className="flex items-center justify-end space-x-3 sm:space-x-4">
               <button
                 onClick={() => setSearchOpen(true)}
                 className="p-1.5 text-[#171717] hover:opacity-70 transition-opacity"
@@ -121,7 +119,6 @@ export default function Navbar() {
                 <Search className="w-5 h-5" />
               </button>
 
-              {/* Account Icon */}
               <Link
                 to="/account"
                 className="p-1.5 text-[#171717] hover:opacity-70 transition-opacity relative"
@@ -134,22 +131,6 @@ export default function Navbar() {
                 )}
               </Link>
 
-              {/* Wishlist Icon */}
-              <Link
-                to="/wishlist"
-                className="p-1.5 text-[#171717] hover:opacity-70 transition-opacity relative"
-                title="Saved Wishlist"
-                aria-label="Wishlist"
-              >
-                <Heart className="w-5 h-5" />
-                {wishlist.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-[#171717] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                    {wishlist.length}
-                  </span>
-                )}
-              </Link>
-
-              {/* Shopping Bag Icon with Drawer Trigger */}
               <button
                 onClick={openCartDrawer}
                 className="p-1.5 text-[#171717] hover:opacity-70 transition-opacity relative"
@@ -169,6 +150,7 @@ export default function Navbar() {
               </button>
             </div>
           </div>
+
         </div>
       </header>
 
@@ -276,114 +258,96 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ================= MOBILE NAVIGATION DRAWER ================= */}
+      {/* ================= FULLSTOP-STYLE MENU MODAL POPUP ================= */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <div className="fixed inset-0 z-50 flex lg:hidden">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-elora-dark/60 backdrop-blur-sm"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm"
             />
 
             <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              className="relative w-full max-w-xs bg-elora-bg border-r border-elora-taupe/40 h-full flex flex-col justify-between overflow-y-auto p-6 z-10"
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full max-w-md bg-white border border-[#e5e5e5] rounded-2xl shadow-2xl max-h-[86vh] flex flex-col justify-between overflow-hidden z-10"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu"
             >
-              <div>
-                {/* Mobile Header */}
-                <div className="flex items-center justify-between pb-4 border-b border-elora-taupe/30">
-                  <Link to="/" onClick={() => setMobileMenuOpen(false)}>
-                    <span className="font-serif text-2xl font-semibold tracking-widest text-elora-dark uppercase">
-                      ÉLORA
-                    </span>
-                  </Link>
-                  <button
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="p-1 text-stone-500 hover:text-elora-dark transition-colors"
-                    aria-label="Close menu"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
+              {/* Modal Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-[#efefef]">
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-[#666666] font-semibold">ÉLORA.</p>
+                  <h2 className="text-lg font-bold text-[#171717] leading-tight">Menu</h2>
                 </div>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-9 h-9 rounded-full bg-[#f5f5f5] hover:bg-[#e5e5e5] flex items-center justify-center text-[#171717] transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
 
-                {/* Mobile Search Input */}
-                <div className="mt-4">
-                  <button
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      setSearchOpen(true);
-                    }}
-                    className="w-full flex items-center justify-between py-2.5 px-3 bg-white border border-elora-taupe/40 text-xs text-elora-gray"
-                  >
-                    <span className="flex items-center space-x-2">
-                      <Search className="w-3.5 h-3.5" />
-                      <span>Search collection...</span>
-                    </span>
-                    <span className="text-[10px] uppercase font-bold text-elora-brown">Search</span>
-                  </button>
-                </div>
+              {/* Scrollable Categories List */}
+              <div className="p-6 overflow-y-auto space-y-4">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setSearchOpen(true);
+                  }}
+                  className="w-full flex items-center justify-between py-2.5 px-3.5 bg-[#f7f7f7] border border-[#e5e5e5] rounded-xl text-xs text-[#666666] hover:border-[#171717] transition-colors"
+                >
+                  <span className="flex items-center space-x-2">
+                    <Search className="w-3.5 h-3.5 text-[#171717]" />
+                    <span>Search products...</span>
+                  </span>
+                  <span className="text-[10px] uppercase font-bold text-[#171717]">Search</span>
+                </button>
 
-                {/* Mobile Category Navigation */}
-                <div className="mt-6 space-y-1 text-sm font-semibold text-[#171717]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <Link
                     to="/"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-2.5 border-b border-[#efefef]"
+                    className="flex items-center justify-between px-4 py-3 rounded-xl border border-[#ececec] bg-white hover:bg-[#171717] hover:text-white hover:border-[#171717] text-xs font-semibold text-[#171717] transition-colors"
                   >
-                    Home
+                    <span>Home</span>
+                    <ArrowRight className="w-3.5 h-3.5 opacity-60" />
                   </Link>
-                  {[
-                    { label: 'T.Shirts', to: '/collections/t-shirts' },
-                    { label: 'Hoodies', to: '/collections/hoodies' },
-                    { label: 'Shirts', to: '/collections/shirts' },
-                    { label: 'Tank-Tops', to: '/collections/tank-tops' },
-                    { label: 'Trousers', to: '/collections/trousers' },
-                    { label: 'Shorts', to: '/collections/shorts' },
-                    { label: 'Cargo-Pants', to: '/collections/cargo-pants' },
-                    { label: 'End of Season Sale', to: '/collections/end-of-season-sale' },
-                  ].map((item) => (
+
+                  {CATEGORIES_NAV.map((item) => (
                     <Link
-                      key={item.label}
-                      to={item.to}
+                      key={item.slug}
+                      to={item.path}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="block py-2.5 border-b border-[#efefef]"
+                      className="flex items-center justify-between px-4 py-3 rounded-xl border border-[#ececec] bg-white hover:bg-[#171717] hover:text-white hover:border-[#171717] text-xs font-semibold text-[#171717] transition-colors"
                     >
-                      {item.label}
+                      <span>{item.name}</span>
+                      <ArrowRight className="w-3.5 h-3.5 opacity-60" />
                     </Link>
                   ))}
                 </div>
               </div>
 
-              {/* Mobile Drawer Bottom Info */}
-              <div className="pt-6 border-t border-elora-taupe/30 space-y-3">
+              {/* Modal Footer */}
+              <div className="px-6 py-4 bg-[#fafafa] border-t border-[#efefef] flex items-center justify-between">
                 <Link
                   to="/account"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center space-x-2 text-xs uppercase tracking-wider text-elora-dark font-medium"
+                  className="flex items-center space-x-2 text-xs text-[#171717] font-semibold hover:underline"
                 >
-                  <User className="w-4 h-4 text-elora-brown" />
-                  <span>{user ? `Account: ${user.name}` : 'Sign In / Register'}</span>
+                  <User className="w-4 h-4" />
+                  <span>{user ? `Account: ${user.name}` : 'Sign In / Account'}</span>
                 </Link>
-                <Link
-                  to="/wishlist"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between text-xs uppercase tracking-wider text-elora-dark font-medium"
-                >
-                  <span className="flex items-center space-x-2">
-                    <Heart className="w-4 h-4 text-elora-brown" />
-                    <span>Wishlist</span>
-                  </span>
-                  <span className="text-stone-500 font-bold">{wishlist.length}</span>
-                </Link>
-                <div className="pt-3 text-[10px] text-elora-gray uppercase tracking-widest text-center">
-                  Pakistan / PKR (Rs.)
-                </div>
+                <span className="text-[10px] text-[#666666] uppercase tracking-wider">
+                  PKR (Rs.)
+                </span>
               </div>
             </motion.div>
           </div>

@@ -1,67 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
-import { 
-  X, 
-  Heart, 
-  Star, 
-  Ruler, 
-  ShoppingBag, 
-  Truck, 
-  ShieldCheck, 
-  Check, 
-  ChevronRight
+import { useNavigate } from 'react-router-dom';
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  ShoppingBag,
+  Ruler,
+  Truck,
+  ShieldCheck,
+  Check
 } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
 
 export default function QuickViewModal() {
-  const { 
-    quickViewProduct, 
-    closeQuickView, 
-    addToCart, 
-    isInWishlist, 
-    toggleWishlist,
-    openSizeGuide 
-  } = useShop();
+  const { quickViewProduct, closeQuickView, addToCart, openSizeGuide } = useShop();
+  const navigate = useNavigate();
 
   const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
-  const [showInModalSizeChart, setShowInModalSizeChart] = useState(false);
   const [sizeError, setSizeError] = useState(false);
 
-  const navigate = useNavigate();
+  const images = quickViewProduct?.images || [];
+  const totalImages = images.length;
 
   useEffect(() => {
+    if (!quickViewProduct) return;
     setActiveImageIdx(0);
     setSelectedSize('');
-    setSelectedColor('');
+    setSelectedColor(
+      quickViewProduct.colors && quickViewProduct.colors[0]
+        ? quickViewProduct.colors[0].name
+        : ''
+    );
     setQuantity(1);
-    setShowInModalSizeChart(false);
     setSizeError(false);
-  }, [quickViewProduct?.id]);
+  }, [quickViewProduct]);
+
+  const handlePrev = useCallback(() => {
+    if (totalImages <= 1) return;
+    setActiveImageIdx((prev) => (prev - 1 + totalImages) % totalImages);
+  }, [totalImages]);
+
+  const handleNext = useCallback(() => {
+    if (totalImages <= 1) return;
+    setActiveImageIdx((prev) => (prev + 1) % totalImages);
+  }, [totalImages]);
+
+  useEffect(() => {
+    if (!quickViewProduct) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') closeQuickView();
+      else if (e.key === 'ArrowLeft') handlePrev();
+      else if (e.key === 'ArrowRight') handleNext();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [quickViewProduct, closeQuickView, handlePrev, handleNext]);
 
   if (!quickViewProduct) return null;
 
   const product = quickViewProduct;
-  const isFavorite = isInWishlist(product.id);
-  const activeColor = selectedColor || (product.colors && product.colors[0] ? product.colors[0].name : '');
-
-  const handleSizeSelect = (sz) => {
-    setSelectedSize(sz);
-    setSizeError(false);
-  };
+  const activeColor =
+    selectedColor || (product.colors && product.colors[0] ? product.colors[0].name : 'Default');
 
   const handleAdd = () => {
     if (product.sizes && product.sizes.length > 0 && !selectedSize) {
       setSizeError(true);
       return;
     }
-    const success = addToCart(product, selectedSize, activeColor, quantity);
-    if (success) {
-      closeQuickView();
-    }
+    const success = addToCart(product, selectedSize || 'One Size', activeColor, quantity);
+    if (success) closeQuickView();
   };
 
   const handleBuyNow = () => {
@@ -69,198 +88,209 @@ export default function QuickViewModal() {
       setSizeError(true);
       return;
     }
-    addToCart(product, selectedSize, activeColor, quantity);
+    addToCart(product, selectedSize || 'One Size', activeColor, quantity);
     closeQuickView();
     navigate('/checkout');
   };
 
   return (
-    <div className="fixed inset-0 z-[2000000] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-      {/* Backdrop */}
+    <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={closeQuickView}
-        className="fixed inset-0 bg-elora-dark/75 backdrop-blur-sm"
-      />
-
-      {/* Modal Dialog Card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        transition={{ duration: 0.25 }}
-        className="relative bg-white w-full max-w-4xl max-h-[92vh] overflow-y-auto border border-[#e5e5e5] rounded-2xl shadow-2xl p-6 sm:p-8 z-10"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 12 }}
+        transition={{ duration: 0.2 }}
+        className="fixed inset-0 z-[2000000] bg-white overflow-y-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-label={product.name}
       >
-        {/* Close Button */}
-        <button
-          onClick={closeQuickView}
-          className="absolute top-4 right-4 p-2 text-stone-400 hover:text-elora-dark transition-colors z-20"
-          aria-label="Close modal"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Sticky Top Header Bar */}
+        <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#e5e5e5]">
+          <div className="max-w-[1220px] mx-auto px-4 sm:px-8 h-14 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-xs font-extrabold tracking-tight text-[#171717] uppercase shrink-0">
+                ÉLORA.
+              </span>
+              <span className="text-[#dedede]">/</span>
+              <span className="text-xs font-medium text-[#666666] truncate">
+                {product.name}
+              </span>
+            </div>
 
-        {/* Content Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          {/* Left: Product Images Gallery */}
-          <div>
-            <div className="relative aspect-[3/4] overflow-hidden bg-stone-100 border border-elora-taupe/30">
-              <img
-                src={product.images[activeImageIdx] || product.images[0]}
-                alt={product.name}
-                className="w-full h-full object-cover object-top"
-              />
-              {product.discountBadge && (
-                <span className="absolute top-3 left-3 bg-elora-dark text-white text-[9px] font-sans font-bold tracking-widest uppercase px-2 py-1">
-                  {product.discountBadge}
-                </span>
+            <button
+              type="button"
+              onClick={closeQuickView}
+              className="w-9 h-9 rounded-full bg-[#f5f5f5] hover:bg-[#171717] hover:text-white text-[#171717] flex items-center justify-center transition-colors shrink-0"
+              aria-label="Close full-screen product view"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Full-Screen Product Content */}
+        <div className="max-w-[1220px] mx-auto px-4 sm:px-8 py-6 md:py-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+
+            {/* Left Column: Full-Aspect Large Image Gallery */}
+            <div className="lg:col-span-7">
+              <div className="relative bg-[#f7f7f7] rounded-2xl overflow-hidden flex items-center justify-center min-h-[340px] sm:min-h-[480px] lg:min-h-[560px]">
+                {totalImages > 1 && (
+                  <button
+                    type="button"
+                    onClick={handlePrev}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 hover:bg-[#171717] hover:text-white text-[#171717] border border-[#e5e5e5] flex items-center justify-center transition-colors"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                )}
+
+                <img
+                  src={images[activeImageIdx] || images[0]}
+                  alt={`${product.name} — view ${activeImageIdx + 1}`}
+                  className="max-h-[70vh] w-auto h-auto object-contain"
+                />
+
+                {totalImages > 1 && (
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 hover:bg-[#171717] hover:text-white text-[#171717] border border-[#e5e5e5] flex items-center justify-center transition-colors"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                )}
+
+                {product.discountBadge && (
+                  <span className="absolute top-3 left-3 px-3 py-1 bg-[#171717] text-white text-[10px] font-bold rounded-full">
+                    {product.discountBadge}
+                  </span>
+                )}
+              </div>
+
+              {/* Thumbnails */}
+              {totalImages > 1 && (
+                <div className="flex items-center gap-2.5 mt-3 overflow-x-auto no-scrollbar pb-1">
+                  {images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setActiveImageIdx(idx)}
+                      className={`w-16 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${
+                        activeImageIdx === idx
+                          ? 'border-[#171717] opacity-100'
+                          : 'border-transparent opacity-60 hover:opacity-90'
+                      }`}
+                    >
+                      <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
 
-            {/* Thumbnails */}
-            {product.images && product.images.length > 1 && (
-              <div className="flex space-x-2 mt-3 overflow-x-auto pb-1">
-                {product.images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveImageIdx(idx)}
-                    className={`w-14 h-18 shrink-0 overflow-hidden border transition-all ${
-                      activeImageIdx === idx
-                        ? 'border-elora-dark ring-1 ring-elora-dark'
-                        : 'border-stone-200 opacity-60 hover:opacity-100'
-                    }`}
-                  >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+            {/* Right Column: Full Product Details, Price, Size, Add to Bag */}
+            <div className="lg:col-span-5 flex flex-col">
+              <p className="text-[11px] uppercase tracking-widest text-[#666666] font-semibold mb-1.5">
+                {product.subcategory || product.category}
+              </p>
 
-          {/* Right: Product Details & Purchase Form */}
-          <div className="flex flex-col justify-between h-full">
-            <div>
-              {/* Category, Rating & Wishlist */}
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] uppercase tracking-ultra text-elora-brown font-semibold">
-                  {product.category} / {product.subcategory}
-                </span>
-                <button
-                  onClick={() => toggleWishlist(product)}
-                  className={`p-1.5 transition-colors ${
-                    isFavorite ? 'text-elora-brown' : 'text-stone-400 hover:text-elora-brown'
-                  }`}
-                  aria-label="Wishlist"
-                >
-                  <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
-                </button>
-              </div>
-
-              {/* Title */}
-              <h2 className="font-serif text-2xl sm:text-3xl font-medium text-elora-dark mb-2">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-[-0.03em] text-[#171717] leading-tight">
                 {product.name}
-              </h2>
+              </h1>
 
-              {/* Subtitle / Essence */}
               {product.subtitle && (
-                <p className="text-xs text-stone-500 font-light mb-3 italic">
+                <p className="text-xs sm:text-sm text-[#666666] mt-1.5">
                   {product.subtitle}
                 </p>
               )}
 
-              {/* Ratings */}
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="flex items-center space-x-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-3.5 h-3.5 ${
-                        i < Math.floor(product.rating)
-                          ? 'fill-elora-brown text-elora-brown'
-                          : 'fill-stone-200 text-stone-200'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <span className="text-xs font-semibold text-elora-dark">{product.rating}</span>
-                <span className="text-xs text-stone-400">({product.reviewCount} reviews)</span>
-              </div>
-
-              {/* Price in PKR */}
-              <div className="flex items-baseline space-x-3 mb-6 pb-5 border-b border-elora-taupe/30">
-                <span className="text-xl sm:text-2xl font-semibold text-elora-dark">
+              {/* Price */}
+              <div className="flex items-baseline gap-3 mt-4 pb-5 border-b border-[#efefef]">
+                <span className="text-2xl font-bold text-[#171717] tabular-nums">
                   Rs. {product.price.toLocaleString()}
                 </span>
                 {product.originalPrice && product.originalPrice > product.price && (
-                  <span className="text-sm text-stone-400 line-through">
+                  <span className="text-sm text-[#737373] line-through tabular-nums">
                     Rs. {product.originalPrice.toLocaleString()}
-                  </span>
-                )}
-                {product.discountBadge && (
-                  <span className="text-xs font-semibold text-elora-dark bg-elora-sand px-2 py-0.5 border border-elora-border">
-                    Save Rs. {(product.originalPrice - product.price).toLocaleString()}
                   </span>
                 )}
               </div>
 
-              {/* Color Swatches */}
+              {/* Description */}
+              {product.description && (
+                <p className="text-xs sm:text-sm text-[#444444] leading-relaxed mt-5">
+                  {product.description}
+                </p>
+              )}
+
+              {/* Color Selector */}
               {product.colors && product.colors.length > 0 && (
-                <div className="mb-5">
-                  <div className="flex items-center justify-between text-xs mb-2">
-                    <span className="font-medium text-elora-dark uppercase tracking-wider">
-                      Color: <span className="font-normal text-stone-600">{activeColor}</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    {product.colors.map((c) => (
-                      <button
-                        key={c.name}
-                        onClick={() => setSelectedColor(c.name)}
-                        className={`w-7 h-7 rounded-full border p-0.5 transition-all ${
-                          activeColor === c.name
-                            ? 'border-elora-dark ring-2 ring-elora-dark/30 scale-110'
-                            : 'border-stone-300 hover:scale-105'
-                        }`}
-                        title={c.name}
-                      >
-                        <span
-                          className="w-full h-full rounded-full block border border-black/10"
-                          style={{ backgroundColor: c.hex }}
-                        />
-                      </button>
-                    ))}
+                <div className="mt-6">
+                  <p className="text-xs font-bold text-[#171717] mb-2">
+                    Color: <span className="font-normal text-[#666666]">{activeColor}</span>
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {product.colors.map((c) => {
+                      const isSelected = activeColor === c.name;
+                      return (
+                        <button
+                          key={c.name}
+                          type="button"
+                          onClick={() => setSelectedColor(c.name)}
+                          className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs transition-colors ${
+                            isSelected
+                              ? 'border-[#171717] bg-[#f5f5f5] font-semibold'
+                              : 'border-[#dedede] bg-white hover:border-[#171717]'
+                          }`}
+                        >
+                          <span
+                            className="w-3.5 h-3.5 rounded-full border border-[#dedede] flex items-center justify-center"
+                            style={{ backgroundColor: c.hex }}
+                          >
+                            {isSelected && <Check className="w-2.5 h-2.5 text-white drop-shadow" />}
+                          </span>
+                          <span>{c.name}</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               )}
 
-              {/* Size Selector with IN-MODAL Size Chart Overlay */}
+              {/* Size Selector */}
               {product.sizes && product.sizes.length > 0 && (
-                <div className="mb-6">
-                  <div className="flex items-center justify-between text-xs mb-2">
-                    <span className="font-medium text-elora-dark uppercase tracking-wider">
-                      Select Size {selectedSize && <span className="text-elora-brown font-bold">({selectedSize})</span>}
-                    </span>
+                <div className="mt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-bold text-[#171717]">
+                      Size {selectedSize ? `: ${selectedSize}` : ''}
+                    </p>
                     <button
-                      onClick={() => setShowInModalSizeChart(!showInModalSizeChart)}
-                      className="inline-flex items-center space-x-1 text-elora-brown hover:text-elora-dark text-xs underline underline-offset-4 font-semibold"
+                      type="button"
+                      onClick={openSizeGuide}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-[#666666] hover:text-[#171717] underline underline-offset-4"
                     >
                       <Ruler className="w-3.5 h-3.5" />
-                      <span>{showInModalSizeChart ? 'Hide Size Chart' : 'View Size Chart'}</span>
+                      <span>Size Guide</span>
                     </button>
                   </div>
 
-                  {/* Size buttons */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
                     {product.sizes.map((sz) => (
                       <button
                         key={sz}
-                        onClick={() => handleSizeSelect(sz)}
-                        className={`min-w-[48px] py-2 px-3 text-xs font-semibold uppercase tracking-wider border transition-all ${
+                        type="button"
+                        onClick={() => {
+                          setSelectedSize(sz);
+                          setSizeError(false);
+                        }}
+                        className={`py-2.5 text-xs font-bold rounded-xl border transition-colors ${
                           selectedSize === sz
-                            ? 'bg-elora-dark text-white border-elora-dark shadow-sm'
-                            : 'bg-white text-stone-700 border-stone-300 hover:border-elora-dark'
+                            ? 'bg-[#171717] text-white border-[#171717]'
+                            : 'bg-white text-[#171717] border-[#dedede] hover:border-[#171717]'
                         }`}
                       >
                         {sz}
@@ -268,126 +298,77 @@ export default function QuickViewModal() {
                     ))}
                   </div>
 
-                  {/* Error notice if trying to add without size */}
                   {sizeError && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-xs text-red-600 mt-2 font-medium"
-                    >
-                      * Please choose a size to proceed with adding to bag.
-                    </motion.p>
-                  )}
-
-                  {/* INLINE IN-MODAL SIZE CHART (Guaranteed to be directly on top in front!) */}
-                  {showInModalSizeChart && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      className="mt-3 p-3 bg-elora-sand/80 border border-elora-taupe/50 text-xs overflow-x-auto"
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-bold text-elora-dark uppercase tracking-wider text-[10px]">
-                          Quick Measurement Chart (Inches)
-                        </span>
-                        <button
-                          onClick={openSizeGuide}
-                          className="text-[10px] text-elora-brown underline"
-                        >
-                          Full Detailed Guide
-                        </button>
-                      </div>
-                      <table className="w-full text-left text-[11px]">
-                        <thead>
-                          <tr className="border-b border-elora-taupe/40 text-stone-700">
-                            <th className="py-1">Size</th>
-                            <th className="py-1">Chest</th>
-                            <th className="py-1">Waist</th>
-                            <th className="py-1">Hips</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-stone-200/60">
-                          <tr><td className="py-1 font-bold">XS</td><td>31-32"</td><td>24-25"</td><td>34-35"</td></tr>
-                          <tr><td className="py-1 font-bold">S</td><td>33-34"</td><td>26-27"</td><td>36-37"</td></tr>
-                          <tr><td className="py-1 font-bold">M</td><td>35-36"</td><td>28-29"</td><td>38-39"</td></tr>
-                          <tr><td className="py-1 font-bold">L</td><td>37-39"</td><td>30-32"</td><td>40-42"</td></tr>
-                          <tr><td className="py-1 font-bold">XL</td><td>40-42"</td><td>33-35"</td><td>43-45"</td></tr>
-                        </tbody>
-                      </table>
-                    </motion.div>
+                    <p className="text-xs text-red-600 font-medium mt-2">
+                      Please select a size first.
+                    </p>
                   )}
                 </div>
               )}
 
-              {/* Quantity Selector */}
-              <div className="flex items-center space-x-4 mb-6">
-                <span className="text-xs uppercase font-medium text-elora-dark tracking-wider">
-                  Quantity:
-                </span>
-                <div className="flex items-center border border-stone-300">
+              {/* Quantity */}
+              <div className="mt-6 flex items-center gap-4">
+                <span className="text-xs font-bold text-[#171717]">Quantity</span>
+                <div className="inline-flex items-center border border-[#dedede] rounded-full">
                   <button
+                    type="button"
                     onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                    className="px-3 py-1.5 text-stone-600 hover:bg-stone-100 transition-colors"
+                    className="w-9 h-9 text-sm font-bold text-[#171717] hover:bg-[#f5f5f5] rounded-l-full"
                   >
                     -
                   </button>
-                  <span className="px-4 py-1.5 text-xs font-semibold text-elora-dark min-w-[36px] text-center">
-                    {quantity}
-                  </span>
+                  <span className="w-8 text-center text-xs font-bold tabular-nums">{quantity}</span>
                   <button
+                    type="button"
                     onClick={() => setQuantity((q) => q + 1)}
-                    className="px-3 py-1.5 text-stone-600 hover:bg-stone-100 transition-colors"
+                    className="w-9 h-9 text-sm font-bold text-[#171717] hover:bg-[#f5f5f5] rounded-r-full"
                   >
                     +
                   </button>
                 </div>
               </div>
 
-              {/* Actions: Add to Bag & Buy Now */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-6">
+              {/* Action Buttons */}
+              <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <button
+                  type="button"
                   onClick={handleAdd}
-                  className="flex-1 py-3.5 px-6 bg-elora-dark text-white text-xs uppercase tracking-widest font-semibold hover:bg-elora-brown transition-colors flex items-center justify-center space-x-2 shadow-sm"
+                  className="w-full py-3.5 px-6 bg-[#171717] text-white text-xs font-bold rounded-full hover:bg-[#333333] transition-colors inline-flex items-center justify-center gap-2"
                 >
                   <ShoppingBag className="w-4 h-4" />
                   <span>Add to Bag</span>
                 </button>
+
                 <button
+                  type="button"
                   onClick={handleBuyNow}
-                  className="py-3.5 px-6 bg-elora-taupe text-elora-dark text-xs uppercase tracking-widest font-semibold hover:bg-stone-300 transition-colors text-center"
+                  className="w-full py-3.5 px-6 bg-white text-[#171717] border border-[#171717] text-xs font-bold rounded-full hover:bg-[#f5f5f5] transition-colors"
                 >
                   Buy Now
                 </button>
               </div>
 
-              {/* Quick Perks Info */}
-              <div className="space-y-2 pt-4 border-t border-elora-taupe/30 text-xs text-stone-600">
-                <div className="flex items-center space-x-2">
-                  <Truck className="w-4 h-4 text-elora-brown shrink-0" />
-                  <span>Free express delivery on orders over Rs. 5,000</span>
+              {/* Fabric & Delivery Info */}
+              <div className="mt-7 pt-5 border-t border-[#efefef] space-y-2.5 text-xs text-[#666666]">
+                {product.fabric && (
+                  <p>
+                    <strong className="text-[#171717]">Fabric:</strong> {product.fabric}
+                  </p>
+                )}
+                <div className="flex items-center gap-2">
+                  <Truck className="w-4 h-4 text-[#171717] shrink-0" />
+                  <span>Express delivery in 2–4 business days across Pakistan</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <ShieldCheck className="w-4 h-4 text-elora-brown shrink-0" />
-                  <span>14-day effortless complimentary exchange policy</span>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-[#171717] shrink-0" />
+                  <span>14-day easy returns &amp; exchanges</span>
                 </div>
               </div>
             </div>
 
-            {/* View Full Product Page Link */}
-            <div className="mt-6 pt-4 border-t border-elora-taupe/30 text-center">
-              <Link
-                to={`/product/${product.id}`}
-                onClick={closeQuickView}
-                className="inline-flex items-center space-x-1.5 text-xs uppercase tracking-widest font-bold text-elora-dark hover:text-elora-brown transition-colors"
-              >
-                <span>View Full Product Details & Story</span>
-                <ChevronRight className="w-4 h-4" />
-              </Link>
-            </div>
           </div>
         </div>
       </motion.div>
-    </div>
+    </AnimatePresence>
   );
 }
-

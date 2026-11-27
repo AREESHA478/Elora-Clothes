@@ -23,8 +23,6 @@ export default function ProductDetailsPage() {
   const { 
     PRODUCTS, 
     addToCart, 
-    isInWishlist, 
-    toggleWishlist, 
     openSizeGuide, 
     addRecentlyViewed,
     addToast 
@@ -56,7 +54,6 @@ export default function ProductDetailsPage() {
     }
   }, [id, product]);
 
-  const isFavorite = isInWishlist(product.id);
   const activeColor = selectedColor || (product.colors && product.colors[0] ? product.colors[0].name : 'Default');
 
   // Handle zoom movement
@@ -204,15 +201,6 @@ export default function ProductDetailsPage() {
                   title="Share Silhouette"
                 >
                   <Share2 className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => toggleWishlist(product)}
-                  className={`p-1.5 transition-colors ${
-                    isFavorite ? 'text-elora-brown' : 'text-stone-400 hover:text-elora-brown'
-                  }`}
-                  title={isFavorite ? "Remove from wishlist" : "Save to wishlist"}
-                >
-                  <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
                 </button>
               </div>
             </div>
