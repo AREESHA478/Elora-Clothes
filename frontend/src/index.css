@@ -4,41 +4,41 @@
 
 @layer base {
   body {
-    background-color: #F7F1E9;
-    color: #4A3428;
-    font-family: 'Plus Jakarta Sans', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #FFFFFF;
+    color: #171717;
+    font-family: Arial, Helvetica, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, .font-serif {
-    font-family: 'Cormorant Garamond', Playfair Display, Georgia, serif;
-    letter-spacing: -0.01em;
+    font-family: Arial, Helvetica, 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.025em;
   }
 
   .font-display {
-    font-family: 'Tenor Sans', 'Cormorant Garamond', Georgia, serif;
-    letter-spacing: 0.05em;
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    letter-spacing: -0.03em;
   }
 }
 
-/* Custom Scrollbar — Warm Brown */
+/* Custom Scrollbar — Clean Monochrome */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F7F1E9;
+  background: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #B89B7D;
+  background: #C4C4C4;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4A3428;
+  background: #171717;
 }
 
 /* Hide scrollbar for clean horizontal scrolls */
@@ -50,15 +50,15 @@
   scrollbar-width: none;
 }
 
-/* Glass & Editorial styles — Warm Cream */
+/* Glass & Sticky Header — Fullstop style */
 .glass-header {
-  background: rgba(247, 241, 233, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .luxury-border {
-  border-color: #D8C8B7;
+  border-color: #E5E5E5;
 }
 
 .image-zoom-container {
@@ -66,19 +66,19 @@
 }
 
 .image-zoom-container img {
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.5s cubic-bezier(0.2, 0.65, 0.3, 1);
 }
 
 .image-zoom-container:hover img {
-  transform: scale(1.06);
+  transform: scale(1.03);
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.35s ease-out forwards;
 }

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ShopProvider } from './context/ShopContext';
 
 // Components
+import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import QuickViewModal from './components/QuickViewModal';
@@ -37,8 +38,9 @@ export default function App() {
     <ShopProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-elora-bg text-elora-dark font-sans selection:bg-elora-brown selection:text-white">
-          {/* Sticky Luxury Navbar */}
+        <div className="min-h-screen flex flex-col bg-white text-[#171717] font-sans selection:bg-[#171717] selection:text-white">
+          {/* Announcement Bar & Sticky Header */}
+          <AnnouncementBar />
           <Navbar />
 
           {/* Main Routing Area */}
@@ -46,6 +48,14 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/shop" element={<ShopPage />} />
+              <Route path="/collections/t-shirts" element={<ShopPage forcedCategory="T.Shirts" />} />
+              <Route path="/collections/hoodies" element={<ShopPage forcedCategory="Hoodies" />} />
+              <Route path="/collections/shirts" element={<ShopPage forcedCategory="Shirts" />} />
+              <Route path="/collections/tank-tops" element={<ShopPage forcedCategory="Tank-Tops" />} />
+              <Route path="/collections/trousers" element={<ShopPage forcedCategory="Trousers" />} />
+              <Route path="/collections/shorts" element={<ShopPage forcedCategory="Shorts" />} />
+              <Route path="/collections/cargo-pants" element={<ShopPage forcedCategory="Cargo-Pants" />} />
+              <Route path="/collections/end-of-season-sale" element={<ShopPage forcedCategory="End of Season Sale" />} />
               <Route path="/product/:id" element={<ProductDetailsPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />

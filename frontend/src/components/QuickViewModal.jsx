@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
@@ -32,6 +32,15 @@ export default function QuickViewModal() {
   const [sizeError, setSizeError] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setActiveImageIdx(0);
+    setSelectedSize('');
+    setSelectedColor('');
+    setQuantity(1);
+    setShowInModalSizeChart(false);
+    setSizeError(false);
+  }, [quickViewProduct?.id]);
 
   if (!quickViewProduct) return null;
 
@@ -82,7 +91,7 @@ export default function QuickViewModal() {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.25 }}
-        className="relative bg-white w-full max-w-4xl max-h-[92vh] overflow-y-auto border border-elora-taupe/40 shadow-2xl p-6 sm:p-8 z-10"
+        className="relative bg-white w-full max-w-4xl max-h-[92vh] overflow-y-auto border border-[#e5e5e5] rounded-2xl shadow-2xl p-6 sm:p-8 z-10"
       >
         {/* Close Button */}
         <button

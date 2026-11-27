@@ -81,203 +81,40 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
+        className={`sticky top-0 z-40 transition-all duration-200 ${
           isScrolled
-            ? 'glass-header shadow-elora-soft border-b border-elora-taupe/30 py-3.5'
-            : 'bg-elora-bg/95 border-b border-elora-taupe/20 py-5'
+            ? 'glass-header shadow-elora-soft border-b border-[#e8e8e8] py-3'
+            : 'bg-white border-b border-[#e8e8e8] py-3.5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            {/* Mobile Menu Button */}
-            <div className="flex items-center lg:hidden">
+        <div className="max-w-[1220px] mx-auto px-4 sm:px-8">
+          <div className="grid grid-cols-3 items-center">
+            {/* Left: Mobile Menu Button (keeps center logo balanced on desktop) */}
+            <div className="flex items-center">
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="p-2 -ml-2 text-elora-dark hover:text-elora-brown transition-colors"
+                className="p-2 -ml-2 text-[#171717] hover:opacity-70 transition-opacity lg:hidden"
                 aria-label="Open mobile navigation menu"
               >
                 <Menu className="w-6 h-6" />
               </button>
             </div>
 
-            {/* Brand Logo */}
-            <div className="flex-1 lg:flex-none text-center lg:text-left">
-              <Link to="/" className="inline-block group">
-                <span className="font-serif text-2xl sm:text-3xl lg:text-3xl font-semibold tracking-widest text-elora-dark uppercase group-hover:text-elora-brown transition-colors">
-                  ÉLORA
-                </span>
-                <span className="block text-[8px] tracking-[0.35em] text-elora-gray uppercase -mt-1 font-sans">
-                  HAUTE COUTURE
+            {/* Center: Brand Logo */}
+            <div className="text-center">
+              <Link to="/" className="inline-flex items-center gap-1 group">
+                <span className="font-sans text-2xl font-extrabold tracking-[-0.05em] text-[#171717] uppercase">
+                  ÉLORA<span className="text-[#171717]">.</span>
                 </span>
               </Link>
             </div>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-9 text-xs uppercase tracking-widest font-medium text-elora-dark">
-              <Link
-                to="/"
-                className="hover:text-elora-brown transition-colors py-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-elora-brown hover:after:w-full after:transition-all after:duration-300"
-              >
-                Home
-              </Link>
-
-              {/* Women Dropdown Trigger */}
-              <div
-                className="relative py-2 cursor-pointer"
-                onMouseEnter={() => setActiveMegaMenu('women')}
-                onMouseLeave={() => setActiveMegaMenu(null)}
-              >
-                <Link
-                  to="/shop?gender=women"
-                  className="flex items-center space-x-1 hover:text-elora-brown transition-colors"
-                >
-                  <span>Women</span>
-                  <ChevronDown className="w-3.5 h-3.5 opacity-60" />
-                </Link>
-
-                {/* Women Mega Menu */}
-                <AnimatePresence>
-                  {activeMegaMenu === 'women' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full -left-20 w-[680px] bg-white border border-elora-taupe/40 shadow-elora-float p-7 grid grid-cols-3 gap-6 rounded-none z-50 text-left"
-                    >
-                      <div className="col-span-2">
-                        <div className="text-[10px] uppercase tracking-widest text-elora-brown font-semibold mb-3 border-b border-elora-taupe/30 pb-1.5">
-                          Women's Categories
-                        </div>
-                        <div className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-xs font-normal normal-case tracking-normal">
-                          <Link to="/shop?category=Dresses&gender=women" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Dresses</Link>
-                          <Link to="/shop?category=Tops&gender=women" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Tops & Knits</Link>
-                          <Link to="/shop?category=Shirts&gender=women" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Crisp Shirts & Blouses</Link>
-                          <Link to="/shop?category=Co-ord Sets&gender=women" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Tailored Co-ord Sets</Link>
-                          <Link to="/shop?category=Trousers&gender=women" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Pleated Trousers</Link>
-                          <Link to="/shop?category=Jeans&gender=women" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Straight Selvedge Jeans</Link>
-                          <Link to="/shop?category=Skirts&gender=women" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Satin Slip Skirts</Link>
-                          <Link to="/shop?category=Outerwear&gender=women" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Wool Coats & Outerwear</Link>
-                        </div>
-                        <div className="mt-5 pt-3 border-t border-elora-taupe/20">
-                          <Link
-                            to="/shop?gender=women"
-                            className="inline-flex items-center text-xs tracking-wider uppercase font-semibold text-elora-brown hover:text-elora-dark transition-colors"
-                          >
-                            <span>Explore All Women's Styles</span>
-                            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                          </Link>
-                        </div>
-                      </div>
-
-                      {/* Featured Card */}
-                      <div className="relative group overflow-hidden bg-elora-sand">
-                        <img
-                          src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80"
-                          alt="Women Collection"
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                        <div className="p-3 bg-elora-dark text-white">
-                          <p className="text-[10px] tracking-widest uppercase text-elora-taupe">New Season</p>
-                          <p className="font-serif text-sm font-semibold truncate">The Autumn Editorial</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Men Dropdown Trigger */}
-              <div
-                className="relative py-2 cursor-pointer"
-                onMouseEnter={() => setActiveMegaMenu('men')}
-                onMouseLeave={() => setActiveMegaMenu(null)}
-              >
-                <Link
-                  to="/shop?gender=men"
-                  className="flex items-center space-x-1 hover:text-elora-brown transition-colors"
-                >
-                  <span>Men</span>
-                  <ChevronDown className="w-3.5 h-3.5 opacity-60" />
-                </Link>
-
-                {/* Men Mega Menu */}
-                <AnimatePresence>
-                  {activeMegaMenu === 'men' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full -left-20 w-[680px] bg-white border border-elora-taupe/40 shadow-elora-float p-7 grid grid-cols-3 gap-6 rounded-none z-50 text-left"
-                    >
-                      <div className="col-span-2">
-                        <div className="text-[10px] uppercase tracking-widest text-elora-brown font-semibold mb-3 border-b border-elora-taupe/30 pb-1.5">
-                          Men's Categories
-                        </div>
-                        <div className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-xs font-normal normal-case tracking-normal">
-                          <Link to="/shop?category=Shirts&gender=men" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Linen & Silk Shirts</Link>
-                          <Link to="/shop?category=T-shirts&gender=men" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Heavyweight Supima Tees</Link>
-                          <Link to="/shop?category=Hoodies&gender=men" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Architectural Loopback Hoodies</Link>
-                          <Link to="/shop?category=Trousers&gender=men" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Tailored Wool Trousers</Link>
-                          <Link to="/shop?category=Jeans&gender=men" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Japanese Selvedge Jeans</Link>
-                          <Link to="/shop?category=Jackets&gender=men" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Suede Jackets & Overcoats</Link>
-                          <Link to="/shop?category=Accessories&gender=men" className="text-stone-700 hover:text-elora-brown transition-colors hover:translate-x-1 duration-200 inline-block">Belts & Leather Goods</Link>
-                        </div>
-                        <div className="mt-5 pt-3 border-t border-elora-taupe/20">
-                          <Link
-                            to="/shop?gender=men"
-                            className="inline-flex items-center text-xs tracking-wider uppercase font-semibold text-elora-brown hover:text-elora-dark transition-colors"
-                          >
-                            <span>Explore All Men's Styles</span>
-                            <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                          </Link>
-                        </div>
-                      </div>
-
-                      {/* Featured Card */}
-                      <div className="relative group overflow-hidden bg-elora-sand">
-                        <img
-                          src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=500&q=80"
-                          alt="Men Collection"
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                        <div className="p-3 bg-elora-dark text-white">
-                          <p className="text-[10px] tracking-widest uppercase text-elora-taupe">Sartorial Modernism</p>
-                          <p className="font-serif text-sm font-semibold truncate">Refined Essentials</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <Link
-                to="/shop?filter=new"
-                className="hover:text-elora-brown transition-colors py-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-elora-brown hover:after:w-full after:transition-all after:duration-300"
-              >
-                New Arrivals
-              </Link>
-              <Link
-                to="/shop?collection=Autumn Edit"
-                className="hover:text-elora-brown transition-colors py-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-elora-brown hover:after:w-full after:transition-all after:duration-300"
-              >
-                Collections
-              </Link>
-              <Link
-                to="/shop?filter=sale"
-                className="text-stone-900 hover:text-red-700 font-semibold transition-colors py-2"
-              >
-                Sale
-              </Link>
-            </nav>
-
             {/* Right Action Icons */}
-            <div className="flex items-center space-x-3 sm:space-x-5">
+            <div className="flex items-center justify-end space-x-2.5 sm:space-x-4">
               {/* Search Icon */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-1.5 text-elora-dark hover:text-elora-brown transition-colors"
+                className="p-1.5 text-[#171717] hover:opacity-70 transition-opacity"
                 title="Search Collections"
                 aria-label="Search"
               >
@@ -287,26 +124,26 @@ export default function Navbar() {
               {/* Account Icon */}
               <Link
                 to="/account"
-                className="p-1.5 text-elora-dark hover:text-elora-brown transition-colors relative"
+                className="p-1.5 text-[#171717] hover:opacity-70 transition-opacity relative"
                 title={user ? `Signed in as ${user.name}` : "Client Account"}
                 aria-label="Account"
               >
                 <User className="w-5 h-5" />
                 {user && (
-                  <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-elora-brown" />
+                  <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#171717]" />
                 )}
               </Link>
 
               {/* Wishlist Icon */}
               <Link
                 to="/wishlist"
-                className="p-1.5 text-elora-dark hover:text-elora-brown transition-colors relative"
+                className="p-1.5 text-[#171717] hover:opacity-70 transition-opacity relative"
                 title="Saved Wishlist"
                 aria-label="Wishlist"
               >
                 <Heart className="w-5 h-5" />
                 {wishlist.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-elora-brown text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                  <span className="absolute -top-1 -right-1 bg-[#171717] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                     {wishlist.length}
                   </span>
                 )}
@@ -315,7 +152,7 @@ export default function Navbar() {
               {/* Shopping Bag Icon with Drawer Trigger */}
               <button
                 onClick={openCartDrawer}
-                className="p-1.5 text-elora-dark hover:text-elora-brown transition-colors relative"
+                className="p-1.5 text-[#171717] hover:opacity-70 transition-opacity relative"
                 title="Shopping Bag"
                 aria-label="Shopping Bag"
               >
@@ -324,7 +161,7 @@ export default function Navbar() {
                   <motion.span
                     initial={{ scale: 0.8 }}
                     animate={{ scale: 1 }}
-                    className="absolute -top-1 -right-1 bg-elora-dark text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
+                    className="absolute -top-1 -right-1 bg-[#171717] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
                   >
                     {cartItemCount}
                   </motion.span>
@@ -492,100 +329,34 @@ export default function Navbar() {
                   </button>
                 </div>
 
-                {/* Nav Accordions */}
-                <div className="mt-6 space-y-3 text-sm uppercase tracking-wider font-medium text-stone-800">
+                {/* Mobile Category Navigation */}
+                <div className="mt-6 space-y-1 text-sm font-semibold text-[#171717]">
                   <Link
                     to="/"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-2 border-b border-stone-200/60"
+                    className="block py-2.5 border-b border-[#efefef]"
                   >
                     Home
                   </Link>
-
-                  {/* Women Accordion */}
-                  <div className="border-b border-stone-200/60 pb-2">
-                    <button
-                      onClick={() => setMobileExpandedCat(mobileExpandedCat === 'women' ? null : 'women')}
-                      className="w-full flex items-center justify-between py-2 text-left"
+                  {[
+                    { label: 'T.Shirts', to: '/collections/t-shirts' },
+                    { label: 'Hoodies', to: '/collections/hoodies' },
+                    { label: 'Shirts', to: '/collections/shirts' },
+                    { label: 'Tank-Tops', to: '/collections/tank-tops' },
+                    { label: 'Trousers', to: '/collections/trousers' },
+                    { label: 'Shorts', to: '/collections/shorts' },
+                    { label: 'Cargo-Pants', to: '/collections/cargo-pants' },
+                    { label: 'End of Season Sale', to: '/collections/end-of-season-sale' },
+                  ].map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.to}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block py-2.5 border-b border-[#efefef]"
                     >
-                      <span>Women</span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          mobileExpandedCat === 'women' ? 'rotate-180 text-elora-brown' : ''
-                        }`}
-                      />
-                    </button>
-                    {mobileExpandedCat === 'women' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        className="pl-3 py-2 space-y-2 text-xs normal-case tracking-normal font-normal text-stone-600"
-                      >
-                        <Link to="/shop?category=Dresses&gender=women" className="block py-1">Dresses</Link>
-                        <Link to="/shop?category=Tops&gender=women" className="block py-1">Tops & Knits</Link>
-                        <Link to="/shop?category=Shirts&gender=women" className="block py-1">Shirts & Blouses</Link>
-                        <Link to="/shop?category=Co-ord Sets&gender=women" className="block py-1">Co-ord Sets</Link>
-                        <Link to="/shop?category=Trousers&gender=women" className="block py-1">Trousers & Tailoring</Link>
-                        <Link to="/shop?category=Jeans&gender=women" className="block py-1">Denim & Jeans</Link>
-                        <Link to="/shop?category=Skirts&gender=women" className="block py-1">Skirts</Link>
-                        <Link to="/shop?category=Outerwear&gender=women" className="block py-1">Coats & Outerwear</Link>
-                        <Link to="/shop?gender=women" className="block py-1.5 font-semibold text-elora-brown">Shop All Women →</Link>
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Men Accordion */}
-                  <div className="border-b border-stone-200/60 pb-2">
-                    <button
-                      onClick={() => setMobileExpandedCat(mobileExpandedCat === 'men' ? null : 'men')}
-                      className="w-full flex items-center justify-between py-2 text-left"
-                    >
-                      <span>Men</span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          mobileExpandedCat === 'men' ? 'rotate-180 text-elora-brown' : ''
-                        }`}
-                      />
-                    </button>
-                    {mobileExpandedCat === 'men' && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        className="pl-3 py-2 space-y-2 text-xs normal-case tracking-normal font-normal text-stone-600"
-                      >
-                        <Link to="/shop?category=Shirts&gender=men" className="block py-1">Shirts & Camp Collars</Link>
-                        <Link to="/shop?category=T-shirts&gender=men" className="block py-1">T-Shirts & Polos</Link>
-                        <Link to="/shop?category=Hoodies&gender=men" className="block py-1">Loopback Hoodies</Link>
-                        <Link to="/shop?category=Trousers&gender=men" className="block py-1">Pleated Trousers</Link>
-                        <Link to="/shop?category=Jeans&gender=men" className="block py-1">Selvedge Denim</Link>
-                        <Link to="/shop?category=Jackets&gender=men" className="block py-1">Jackets & Coats</Link>
-                        <Link to="/shop?category=Accessories&gender=men" className="block py-1">Belts & Accessories</Link>
-                        <Link to="/shop?gender=men" className="block py-1.5 font-semibold text-elora-brown">Shop All Men →</Link>
-                      </motion.div>
-                    )}
-                  </div>
-
-                  <Link
-                    to="/shop?filter=new"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block py-2 border-b border-stone-200/60"
-                  >
-                    New Arrivals
-                  </Link>
-                  <Link
-                    to="/shop?collection=Autumn Edit"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block py-2 border-b border-stone-200/60"
-                  >
-                    Collections
-                  </Link>
-                  <Link
-                    to="/shop?filter=sale"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block py-2 text-red-700 font-semibold"
-                  >
-                    Sale (Up to 40% Off)
-                  </Link>
+                      {item.label}
+                    </Link>
+                  ))}
                 </div>
               </div>
 

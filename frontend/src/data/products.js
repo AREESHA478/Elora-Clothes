@@ -905,58 +905,209 @@ export const PRODUCTS = [
     care: "Hand wash cool or dry clean.",
     modelInfo: "Model is 184cm (6'0\") wearing size Medium",
     deliveryInfo: "2-4 days courier delivery."
+  },
+  // ===================== TANK-TOPS =====================
+  {
+    id: "elr-tt-01",
+    name: "Essential Ribbed Cotton Tank-Top",
+    subtitle: "Heavyweight 240gsm combed cotton jersey",
+    category: "Tank-Tops",
+    subcategory: "Tank-Tops",
+    gender: "men",
+    price: 1990,
+    originalPrice: 2490,
+    discountBadge: "20% OFF",
+    rating: 4.8,
+    reviewCount: 38,
+    isNewArrival: true,
+    isBestSeller: true,
+    isSale: true,
+    featured: true,
+    collection: "Core",
+    images: [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=80"
+    ],
+    colors: [
+      { name: "Jet Black", hex: "#171717" },
+      { name: "Optic White", hex: "#FFFFFF" }
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    description: "Structured ribbed cotton tank-top cut with a clean neckline and reinforced armholes for everyday layering or solo wear.",
+    fabric: "100% Combed Cotton Ribbed Jersey (240 GSM)",
+    care: "Machine wash cold. Line dry.",
+    modelInfo: "Model is 180cm wearing size Medium",
+    deliveryInfo: "2-4 days courier delivery."
+  },
+  {
+    id: "elr-tt-02",
+    name: "Studio Relaxed Tank-Top",
+    subtitle: "Breathable boxy-fit athletic tank",
+    category: "Tank-Tops",
+    subcategory: "Tank-Tops",
+    gender: "women",
+    price: 1850,
+    originalPrice: 1850,
+    rating: 4.7,
+    reviewCount: 24,
+    isNewArrival: true,
+    isBestSeller: false,
+    isSale: false,
+    featured: false,
+    collection: "Core",
+    images: [
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=80"
+    ],
+    colors: [
+      { name: "Chalk White", hex: "#F5F5F5" },
+      { name: "Charcoal", hex: "#333333" }
+    ],
+    sizes: ["XS", "S", "M", "L"],
+    description: "Soft-touch relaxed tank-top designed for clean everyday proportions.",
+    fabric: "95% Organic Cotton, 5% Elastane",
+    care: "Machine wash cold.",
+    modelInfo: "Model is 173cm wearing size Small",
+    deliveryInfo: "2-4 days courier delivery."
+  },
+  // ===================== SHORTS =====================
+  {
+    id: "elr-sh-01",
+    name: "Heavyweight Fleece Street Shorts",
+    subtitle: "Above-knee relaxed fit with raw-hem finish",
+    category: "Shorts",
+    subcategory: "Shorts",
+    gender: "men",
+    price: 2790,
+    originalPrice: 3490,
+    discountBadge: "20% OFF",
+    rating: 4.9,
+    reviewCount: 51,
+    isNewArrival: true,
+    isBestSeller: true,
+    isSale: true,
+    featured: true,
+    collection: "Core",
+    images: [
+      "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=1000&q=80"
+    ],
+    colors: [
+      { name: "Ash Grey", hex: "#A3A3A3" },
+      { name: "Obsidian Black", hex: "#171717" }
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    description: "380gsm French terry shorts with deep side pockets, elasticated drawcord waistband, and a structured relaxed drape.",
+    fabric: "100% Loopback French Terry Cotton (380 GSM)",
+    care: "Machine wash cold inside out.",
+    modelInfo: "Model is 183cm wearing size Medium",
+    deliveryInfo: "2-4 days courier delivery."
+  },
+  {
+    id: "elr-sh-02",
+    name: "Utility Chino Shorts",
+    subtitle: "Crisp cotton twill tailored shorts",
+    category: "Shorts",
+    subcategory: "Shorts",
+    gender: "men",
+    price: 2950,
+    originalPrice: 2950,
+    rating: 4.6,
+    reviewCount: 19,
+    isNewArrival: false,
+    isBestSeller: false,
+    isSale: false,
+    featured: false,
+    collection: "Core",
+    images: [
+      "https://images.unsplash.com/photo-1565084888279-aca607ecce0c?auto=format&fit=crop&w=1000&q=80"
+    ],
+    colors: [
+      { name: "Stone", hex: "#D4CFC7" },
+      { name: "Black", hex: "#171717" }
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    description: "Clean-cut chino shorts crafted from breathable brushed cotton twill.",
+    fabric: "98% Cotton Twill, 2% Spandex",
+    care: "Machine wash warm.",
+    modelInfo: "Model is 181cm wearing size Medium",
+    deliveryInfo: "2-4 days courier delivery."
+  },
+  // ===================== CARGO-PANTS =====================
+  {
+    id: "elr-cg-01",
+    name: "Multi-Pocket Relaxed Cargo-Pants",
+    subtitle: "Wide-leg streetwear utility cargos",
+    category: "Cargo-Pants",
+    subcategory: "Cargo-Pants",
+    gender: "men",
+    price: 4490,
+    originalPrice: 5490,
+    discountBadge: "18% OFF",
+    rating: 4.9,
+    reviewCount: 73,
+    isNewArrival: true,
+    isBestSeller: true,
+    isSale: true,
+    featured: true,
+    collection: "Core",
+    images: [
+      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=1000&q=80"
+    ],
+    colors: [
+      { name: "Pitch Black", hex: "#171717" },
+      { name: "Slate Olive", hex: "#4A5240" }
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    description: "Signature wide-leg cargo pants featuring gusseted bellows pockets, articulated knees, and adjustable drawcord hems.",
+    fabric: "100% Heavyweight Cotton Ripstop",
+    care: "Machine wash cold.",
+    modelInfo: "Model is 182cm wearing size Medium",
+    deliveryInfo: "2-4 days courier delivery."
+  },
+  {
+    id: "elr-cg-02",
+    name: "Parachute Utility Cargo-Pants",
+    subtitle: "Lightweight technical nylon-cotton cargos",
+    category: "Cargo-Pants",
+    subcategory: "Cargo-Pants",
+    gender: "women",
+    price: 4250,
+    originalPrice: 4250,
+    rating: 4.8,
+    reviewCount: 34,
+    isNewArrival: true,
+    isBestSeller: false,
+    isSale: false,
+    featured: true,
+    collection: "Core",
+    images: [
+      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=80"
+    ],
+    colors: [
+      { name: "Charcoal", hex: "#262626" },
+      { name: "Sand", hex: "#D6CFC2" }
+    ],
+    sizes: ["XS", "S", "M", "L"],
+    description: "Oversized parachute cargo trousers with toggle waist and ankle cinches for customizable silhouette.",
+    fabric: "65% Cotton, 35% Technical Nylon",
+    care: "Cold gentle wash.",
+    modelInfo: "Model is 174cm wearing size Small",
+    deliveryInfo: "2-4 days courier delivery."
   }
 ];
 
 export const CATEGORIES_NAV = [
-  {
-    name: "Women",
-    slug: "women",
-    path: "/shop?gender=women",
-    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80",
-    featuredText: "Autumn / Winter 2026 Collection",
-    subcategories: [
-      { name: "Dresses", path: "/shop?category=Dresses" },
-      { name: "Tops & Knits", path: "/shop?category=Tops" },
-      { name: "Shirts & Blouses", path: "/shop?category=Shirts&gender=women" },
-      { name: "Co-ord Sets", path: "/shop?category=Co-ord Sets" },
-      { name: "Trousers & Tailoring", path: "/shop?category=Trousers&gender=women" },
-      { name: "Denim & Jeans", path: "/shop?category=Jeans&gender=women" },
-      { name: "Skirts", path: "/shop?category=Skirts" },
-      { name: "Outerwear & Coats", path: "/shop?category=Outerwear" }
-    ]
-  },
-  {
-    name: "Men",
-    slug: "men",
-    path: "/shop?gender=men",
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
-    featuredText: "Tailored Ease & Sartorial Staples",
-    subcategories: [
-      { name: "Shirts", path: "/shop?category=Shirts&gender=men" },
-      { name: "T-Shirts & Polos", path: "/shop?category=T-shirts" },
-      { name: "Hoodies & Fleeces", path: "/shop?category=Hoodies" },
-      { name: "Tailored Trousers", path: "/shop?category=Trousers&gender=men" },
-      { name: "Selvedge Jeans", path: "/shop?category=Jeans&gender=men" },
-      { name: "Jackets & Overcoats", path: "/shop?category=Jackets" },
-      { name: "Accessories", path: "/shop?category=Accessories" }
-    ]
-  },
-  {
-    name: "New Arrivals",
-    slug: "new-arrivals",
-    path: "/shop?filter=new",
-  },
-  {
-    name: "Collections",
-    slug: "collections",
-    path: "/shop?collection=Autumn Edit",
-  },
-  {
-    name: "Sale",
-    slug: "sale",
-    path: "/shop?filter=sale",
-  }
+  { name: "T.Shirts", slug: "t-shirts", path: "/collections/t-shirts" },
+  { name: "Hoodies", slug: "hoodies", path: "/collections/hoodies" },
+  { name: "Shirts", slug: "shirts", path: "/collections/shirts" },
+  { name: "Tank-Tops", slug: "tank-tops", path: "/collections/tank-tops" },
+  { name: "Trousers", slug: "trousers", path: "/collections/trousers" },
+  { name: "Shorts", slug: "shorts", path: "/collections/shorts" },
+  { name: "Cargo-Pants", slug: "cargo-pants", path: "/collections/cargo-pants" },
+  { name: "End of Season Sale", slug: "end-of-season-sale", path: "/collections/end-of-season-sale" }
 ];
 
 export const LOOKBOOK_ITEMS = [
