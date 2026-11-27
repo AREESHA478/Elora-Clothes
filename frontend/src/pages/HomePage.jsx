@@ -18,18 +18,32 @@ export default function HomePage() {
   ).slice(0, 5);
 
   return (
-    <div className="w-full bg-white">
-      {/* 1. Top Split Hero (Fullstop fsb-top-hero) */}
-      <Hero />
+    <div className="relative w-full bg-white overflow-x-clip">
+      {/* Oversized Fullstop-style Background Typography (behind homepage sections below Hero) */}
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 z-0 pointer-events-none select-none overflow-hidden flex items-center justify-center"
+      >
+        <span className="font-sans font-extrabold uppercase tracking-[-0.06em] leading-none whitespace-nowrap text-[#EAE8E6] opacity-80 blur-[0.6px] text-[40vw] sm:text-[36vw] lg:text-[31vw] -rotate-[16deg] sm:-rotate-[12deg] translate-y-[8vh]">
+          ÉLORA
+        </span>
+      </div>
 
-      {/* 2. Category Pills, 3-Tile Discovery Bar & 4-Col Shop by Category */}
-      <CategorySection />
+      {/* 1. Top Split Hero (opaque relative z-10 so watermark never shows behind Hero model image) */}
+      <div className="relative z-10 bg-white">
+        <Hero />
+      </div>
+
+      {/* 2. Category Pills, Discovery Bar & Shop by Category */}
+      <div className="relative z-10">
+        <CategorySection />
+      </div>
 
       {/* 3. Signature Lineup 5-Column Showcase (Fullstop fsb-lineup) */}
-      <section className="bg-white py-5 md:py-7">
+      <section className="relative z-10 bg-transparent py-5 md:py-7">
         <div className="max-w-[1220px] mx-auto px-4 sm:px-8">
           <div className="flex items-center justify-between gap-3 mb-3">
-            <div>
+            <div className="bg-white/85 rounded-[10px] px-2 py-1">
               <p className="text-[10px] uppercase tracking-[0.1em] text-[#666666] mb-0.5">
                 ÉLORA
               </p>
@@ -40,7 +54,7 @@ export default function HomePage() {
 
             <Link
               to="/shop"
-              className="inline-flex items-center justify-center gap-2 min-h-[40px] px-3.5 border border-[#dedede] rounded-full text-[11px] font-semibold text-[#171717] hover:bg-[#f5f5f5] transition-colors shrink-0"
+              className="inline-flex items-center justify-center gap-2 min-h-[40px] px-3.5 bg-white/90 border border-[#dedede] rounded-full text-[11px] font-semibold text-[#171717] hover:bg-[#f5f5f5] transition-colors shrink-0"
             >
               <span>Explore all</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -53,7 +67,7 @@ export default function HomePage() {
                 key={product.id}
                 type="button"
                 onClick={() => openQuickView(product)}
-                className="group flex flex-col items-center text-center min-w-0 p-1.5 rounded-[10px] hover:bg-[#fafafa] transition-colors cursor-pointer"
+                className="group flex flex-col items-center text-center min-w-0 p-1.5 rounded-[10px] bg-white shadow-[0_0_0_1px_rgba(23,23,23,0.06),0_2px_7px_rgba(23,23,23,0.03)] hover:bg-[#fafafa] transition-colors cursor-pointer"
               >
                 <div className="w-full aspect-[2/3] max-h-[240px] rounded-[10px] overflow-hidden bg-[#f7f7f7] mb-2">
                   <img
@@ -75,7 +89,7 @@ export default function HomePage() {
       </section>
 
       {/* 4. Customer Reviews Summary Strip (Fullstop fs-reviews) */}
-      <section className="py-6 md:py-8 border-t border-[#efefef]">
+      <section className="relative z-10 bg-transparent py-6 md:py-8 border-t border-[#efefef]">
         <div className="max-w-[1220px] mx-auto px-4 sm:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-[20px] md:text-[22px] font-bold tracking-[-0.025em] text-[#171717]">

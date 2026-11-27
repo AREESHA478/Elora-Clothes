@@ -78,11 +78,10 @@ export default function CategorySection() {
               key={pill.label}
               to={pill.to}
               onClick={() => setActivePill(idx)}
-              className={`inline-flex items-center gap-2 shrink-0 min-h-[44px] pl-1.5 pr-3.5 py-1.5 rounded-[12px] border text-[12px] font-semibold whitespace-nowrap transition-colors ${
-                activePill === idx
-                  ? 'bg-[#171717] text-white border-[#171717]'
-                  : 'bg-white text-[#171717] border-[#ececec] shadow-[0_2px_7px_rgba(0,0,0,0.03)] hover:bg-[#f4f4f4] hover:border-[#aaaaaa]'
-              }`}
+              className={`inline-flex items-center gap-2 shrink-0 min-h-[44px] pl-1.5 pr-3.5 py-1.5 rounded-[12px] border text-[12px] font-semibold whitespace-nowrap transition-colors ${activePill === idx
+                ? 'bg-[#171717] text-white border-[#171717]'
+                : 'bg-white text-[#171717] border-[#ececec] shadow-[0_2px_7px_rgba(0,0,0,0.03)] hover:bg-[#f4f4f4] hover:border-[#aaaaaa]'
+                }`}
             >
               <img
                 src={pill.thumb}
